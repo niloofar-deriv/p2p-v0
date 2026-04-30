@@ -8,7 +8,7 @@ import Main from "./main"
 import "./globals.css"
 import { AlertDialogProvider } from "@/contexts/alert-dialog-context"
 import { DatadogRumInit } from "@/components/datadog-rum-init"
-import { AnalyticsProvider } from "@/app/analytics-provider"
+import { AnalyticsProvider, AnalyticsWatcher } from "@/app/analytics-provider"
 import { LanguageSync } from "@/lib/i18n/language-sync"
 import { LoadingIndicator } from "@/components/loading-indicator"
 import Script from "next/script"
@@ -70,6 +70,7 @@ export default function RootLayout({
             </ThemeProvider>
           </ReactQueryProvider>
         </AnalyticsProvider>
+        <AnalyticsWatcher />
       </body>
     </html>
   )

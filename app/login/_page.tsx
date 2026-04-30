@@ -6,8 +6,10 @@ import { Input } from "@/components/ui/input"
 import * as AuthAPI from "@/services/api/api-auth"
 import Image from "next/image"
 import { useUserDataStore } from "@/stores/user-data-store"
+import { useAnalytics } from "@/analytics/useAnalytics"
 
 export default function LoginPage() {
+  const { identifyEvent } = useAnalytics()
   const [step, setStep] = useState<"login" | "verification">("login")
   const [email, setEmail] = useState("")
   const [verificationCode, setVerificationCode] = useState("")
@@ -69,6 +71,16 @@ export default function LoginPage() {
 
         await AuthAPI.fetchUserIdAndStore()
         await AuthAPI.getSocketToken(response.access_token)
+
+        await AuthAPI.getSession()
+        const externalId = useUserDataStore.getState().externalId
+        if (externalId) {
+          identifyEvent({
+            userId: externalId,
+            email,
+            language: navigator.language,
+          })
+        }
 
         window.location.href = "/"
       } else {

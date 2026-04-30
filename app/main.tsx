@@ -9,6 +9,7 @@ import Sidebar from "@/components/sidebar"
 import { WebSocketProvider } from "@/contexts/websocket-context"
 import * as AuthAPI from "@/services/api/api-auth"
 import { useUserDataStore } from "@/stores/user-data-store"
+import { useAnalytics } from "@/analytics/useAnalytics"
 import { useOnboardingStatus } from "@/hooks/use-api-queries"
 import { cn, getLoginUrl } from "@/lib/utils"
 import { P2PAccessRemoved } from "@/components/p2p-access-removed"
@@ -33,6 +34,7 @@ export default function Main({
   const userId = useUserDataStore((state) => state.userId)
   const { userData } = useUserDataStore()
   const { setIsWalletAccount } = useUserDataStore()
+  const { identifyEvent } = useAnalytics()
   const [isReady, setIsReady] = useState(false)
   const { data: onboardingStatus, isLoading: isOnboardingLoading } = useOnboardingStatus(isAuthenticated)
 
@@ -88,6 +90,15 @@ export default function Main({
           window.location.href = getLoginUrl(userData?.signup === "v1")
         } else if (sessionAuth) {
           await AuthAPI.fetchUserIdAndStore()
+          if (token) {
+            const externalId = useUserDataStore.getState().externalId
+            if (externalId) {
+              identifyEvent({
+                userId: externalId,
+                language: navigator.language,
+              })
+            }
+          }
         }
       } catch (error) {
         if (abortController.signal.aborted || !isMountedRef.current) {
