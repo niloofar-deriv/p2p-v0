@@ -18,6 +18,7 @@ import { useUserDataStore } from "@/stores/user-data-store"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import { TemporaryBanAlert } from "@/components/temporary-ban-alert"
 import { KycOnboardingSheet } from "@/components/kyc-onboarding-sheet"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface StatusData {
   success: "create" | "update"
@@ -28,6 +29,7 @@ interface StatusData {
 
 export default function AdsPage() {
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const [showDeletedBanner, setShowDeletedBanner] = useState(false)
   const [statusData, setStatusData] = useState<StatusData | null>(null)
   const { userData, userId, onboardingStatus, verificationStatus } = useUserDataStore()
@@ -82,6 +84,7 @@ export default function AdsPage() {
   }, [showKycPopup, showAlert, hideAlert, t, isPoiExpired, isPoaExpired])
 
   const handleCreateAd = () => {
+    track("ek_create_ad_my_ads")
     if (!userId || !verificationStatus?.phone_verified || isPoiExpired || isPoaExpired) {
       setShowKycPopup(true)
       return
@@ -174,9 +177,14 @@ export default function AdsPage() {
     }
   }, [errorModal.show, errorModal.title, errorModal.message, showAlert, t, handleCloseErrorModal])
 
+  useEffect(() => {
+    track("ek_open_my_ads")
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
   const hideMyAdsMutation = useHideMyAds()
 
   const handleHideMyAds = async (value: boolean) => {
+    track("ek_toggle_hide_my_ads_my_ads")
     const previousValue = hiddenAdverts
     setHiddenAdverts(value)
 

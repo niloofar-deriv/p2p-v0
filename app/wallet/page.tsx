@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation"
 import { useAlertDialog } from "@/hooks/use-alert-dialog"
 import { KycOnboardingSheet } from "@/components/kyc-onboarding-sheet"
 import { useTranslations } from "@/lib/i18n/use-translations"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface Balance {
   wallet_id: string
@@ -23,6 +24,7 @@ interface Balance {
 export default function WalletPage() {
   const router = useRouter()
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const { hideAlert, showAlert } = useAlertDialog()
   const { data: currenciesResponse, isLoading: isCurrenciesLoading } = useCurrencies()
   const { data: balanceData, isLoading: isBalanceLoading } = useTotalBalance()
@@ -72,6 +74,10 @@ export default function WalletPage() {
   )
 
   useEffect(() => {
+    track("ek_open_wallets")
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)
     const shouldShowKyc = searchParams.get("show_kyc_popup") === "true"
     if (shouldShowKyc) {
@@ -112,6 +118,7 @@ export default function WalletPage() {
   }, [balanceData, currenciesResponse, processBalanceData])
 
   const handleBalanceClick = (currency: string, balance: string) => {
+    track("ek_wallet_item_wallets", { currency_code: currency })
     setSelectedCurrency(currency)
     setTotalBalance(balance)
     setDisplayBalances(false)

@@ -13,6 +13,7 @@ import { cn, currencyFlagMapper } from "@/lib/utils"
 import type { CurrencyFilterProps } from "./types"
 import EmptyState from "@/components/empty-state"
 import { useTranslations } from "@/lib/i18n/use-translations"
+import { useTrackers } from "@/analytics/useTrackers"
 
 export function CurrencyFilter({
   contentClassName,
@@ -25,6 +26,7 @@ export function CurrencyFilter({
   placeholder = "Search",
 }: CurrencyFilterProps) {
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const [isOpen, setIsOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState("")
   const isMobile = useIsMobile()
@@ -54,11 +56,12 @@ export function CurrencyFilter({
 
   const handleCurrencySelect = useCallback(
     (currencyCode: string) => {
+      track("ek_select_payment_currency_markets_payment_currency", { currency_code: currencyCode })
       onCurrencySelect(currencyCode)
       setIsOpen(false)
       setSearchQuery("")
     },
-    [onCurrencySelect],
+    [onCurrencySelect, track],
   )
 
   const handleOpenChange = useCallback((open: boolean) => {

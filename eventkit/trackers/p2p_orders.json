@@ -1,0 +1,475 @@
+{
+  "version": "0.0.1",
+  "flow": "p2p_orders",
+  "last_updated": "2026-04-30",
+  "pages": [
+    {
+      "page_name": "orders",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "open",
+          "eventkit_id": "ek_open_orders",
+          "description": "User opens the Orders page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_profile",
+          "eventkit_id": "ek_profile_orders",
+          "cta_name": "profile",
+          "description": "User taps the profile icon to navigate to their profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_notifications",
+          "eventkit_id": "ek_notifications_orders",
+          "cta_name": "notifications",
+          "description": "User taps the notifications bell icon"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ask_amy",
+          "eventkit_id": "ek_ask_amy_orders",
+          "cta_name": "ask_amy",
+          "description": "User taps the Ask Amy button to open Intercom messenger"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_active_tab",
+          "eventkit_id": "ek_active_tab_orders",
+          "cta_name": "active_tab",
+          "description": "User switches to the Active orders tab"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_past_tab",
+          "eventkit_id": "ek_past_tab_orders",
+          "cta_name": "past_tab",
+          "description": "User switches to the Past orders tab"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_order_item",
+          "eventkit_id": "ek_order_item_orders",
+          "cta_name": "order_item",
+          "section_name": "{{active_orders | past_orders}}",
+          "description": "User taps an order card in the Active/past tab to view order details"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_rate_order",
+          "eventkit_id": "ek_rate_order_orders",
+          "cta_name": "rate_order",
+          "section_name": "past_orders",
+          "description": "User taps the Rate button on a past order to open the review sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_chat",
+          "eventkit_id": "ek_chat_orders",
+          "cta_name": "chat",
+          "section_name": "active_orders",
+          "description": "User taps the chat icon on an active order tile to navigate to the order chat"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_date_filter",
+          "eventkit_id": "ek_date_filter_orders",
+          "cta_name": "date_filter",
+          "section_name": "past_orders",
+          "description": "User taps the date filter button to open a calendar date range picker"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_browse_market",
+          "eventkit_id": "ek_browse_market_orders",
+          "cta_name": "browse_market",
+          "section_name": "empty_state",
+          "description": "User taps Browse Market on the empty active orders state"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_create_ad",
+          "eventkit_id": "ek_create_ad_orders",
+          "cta_name": "create_ad",
+          "section_name": "empty_state",
+          "description": "User taps Create Ad on the empty active orders state"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry",
+          "eventkit_id": "ek_retry_orders",
+          "cta_name": "retry",
+          "section_name": "error_state",
+          "description": "User taps Retry after the orders list fails to load"
+        }
+      ]
+    },
+    {
+      "page_name": "order_details",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_order_details",
+          "cta_name": "close",
+          "description": "User taps the close button to navigate back to the Orders list"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_view_order_info",
+          "eventkit_id": "ek_view_order_info_order_details",
+          "cta_name": "view_order_info",
+          "section_name": "amount_card",
+          "description": "User taps the View order details link to navigate to the order info page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_counterparty_profile",
+          "eventkit_id": "ek_counterparty_profile_order_details",
+          "cta_name": "counterparty_profile",
+          "section_name": "amount_card",
+          "description": "User taps the counterparty name to view their advertiser profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_chat",
+          "eventkit_id": "ek_chat_order_details",
+          "cta_name": "chat",
+          "section_name": "amount_card",
+          "description": "User taps the chat icon to open the order chat"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_copy_order_id",
+          "eventkit_id": "ek_copy_order_id_order_details",
+          "cta_name": "copy_order_id",
+          "section_name": "amount_card",
+          "description": "User taps the copy icon to copy the order ID to clipboard"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_expand_payment_method",
+          "eventkit_id": "ek_expand_payment_method_order_details",
+          "cta_name": "expand_payment_method",
+          "section_name": "payment_details",
+          "description": "User taps a payment method accordion header to expand or collapse it"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_copy_payment_field",
+          "eventkit_id": "ek_copy_payment_field_order_details",
+          "cta_name": "copy_payment_field",
+          "section_name": "payment_details",
+          "description": "User taps the copy button on a payment detail field to copy the value"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ive_paid",
+          "eventkit_id": "ek_ive_paid_order_details",
+          "cta_name": "ive_paid",
+          "section_name": "order_actions",
+          "description": "Buyer taps the I've paid button to open the proof of transfer upload sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_order",
+          "eventkit_id": "ek_cancel_order_order_details",
+          "cta_name": "cancel_order",
+          "section_name": "order_actions",
+          "description": "Buyer taps the Cancel button to open the order cancellation confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ive_received_payment",
+          "eventkit_id": "ek_ive_received_payment_order_details",
+          "cta_name": "ive_received_payment",
+          "section_name": "order_actions",
+          "description": "Seller taps the I've received payment button to confirm payment receipt or trigger OTP"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_make_complaint",
+          "eventkit_id": "ek_make_complaint_order_details",
+          "cta_name": "make_complaint",
+          "section_name": "order_actions",
+          "description": "User taps Make a complaint to open the dispute reason selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_rate_transaction",
+          "eventkit_id": "ek_rate_transaction_order_details",
+          "cta_name": "rate_transaction",
+          "section_name": "order_actions",
+          "description": "User taps Rate transaction to open the order review sheet on a completed order"
+        }
+      ]
+    },
+    {
+      "page_name": "order_info",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_order_info",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Order Details page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_copy_order_id",
+          "eventkit_id": "ek_copy_order_id_order_info",
+          "cta_name": "copy_order_id",
+          "description": "User taps the copy icon to copy the order ID to clipboard"
+        }
+      ]
+    },
+    {
+      "page_name": "order_otp",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_order_otp",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Order Details page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_help",
+          "eventkit_id": "ek_help_order_otp",
+          "cta_name": "help",
+          "description": "User taps the help button to open the OTP help bottom sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_help_got_it",
+          "eventkit_id": "ek_help_got_it_order_otp",
+          "cta_name": "help_got_it",
+          "section_name": "otp_help_sheet",
+          "description": "User taps Got it to close the OTP help sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_resend_otp",
+          "eventkit_id": "ek_resend_otp_order_otp",
+          "cta_name": "resend_otp",
+          "description": "User taps Resend code to request a new OTP after the countdown expires"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_otp_verified",
+          "eventkit_id": "ek_otp_verified_order_otp",
+          "description": "Fires when the OTP code is successfully verified and the order is completed"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_otp_verification_failed",
+          "eventkit_id": "ek_otp_verification_failed_order_otp",
+          "description": "Fires when the OTP code is invalid, expired, or max attempts are reached"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_otp_resent",
+          "eventkit_id": "ek_otp_resent_order_otp",
+          "description": "Fires when a new OTP code is successfully sent to the user"
+        }
+      ]
+    },
+    {
+      "page_name": "order_dispute_sheet",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_dispute_reason",
+          "eventkit_id": "ek_select_dispute_reason_order_dispute_sheet",
+          "cta_name": "{{dispute_reason}}",
+          "section_name": "order_dispute_sheet",
+          "description": "User selects a dispute reason from the list"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_open_live_chat",
+          "eventkit_id": "ek_open_live_chat_order_dispute_sheet",
+          "cta_name": "open_live_chat",
+          "section_name": "order_dispute_sheet",
+          "description": "User taps the live chat link in the dispute sheet footer"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_submit_dispute",
+          "eventkit_id": "ek_submit_dispute_order_dispute_sheet",
+          "cta_name": "submit_dispute",
+          "section_name": "order_dispute_sheet",
+          "description": "User taps Submit to file the dispute after selecting a reason"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_dispute_submitted",
+          "eventkit_id": "ek_dispute_submitted_order_dispute_sheet",
+          "description": "Fires when the dispute is successfully submitted"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_dispute_submission_failed",
+          "eventkit_id": "ek_dispute_submission_failed_order_dispute_sheet",
+          "description": "Fires when the dispute submission fails"
+        }
+      ]
+    },
+    {
+      "page_name": "order_cancel_sheet",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_keep_order",
+          "eventkit_id": "ek_keep_order_order_cancel_sheet",
+          "cta_name": "keep_order",
+          "section_name": "order_cancel_sheet",
+          "description": "User taps Keep order to dismiss the cancel sheet and keep the order active"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_cancel",
+          "eventkit_id": "ek_confirm_cancel_order_cancel_sheet",
+          "cta_name": "confirm_cancel",
+          "section_name": "order_cancel_sheet",
+          "description": "User taps Confirm cancel to proceed with cancelling the order"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_order_cancelled",
+          "eventkit_id": "ek_order_cancelled_order_cancel_sheet",
+          "description": "Fires when the order is successfully cancelled"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_order_cancellation_failed",
+          "eventkit_id": "ek_order_cancellation_failed_order_cancel_sheet",
+          "description": "Fires when the order cancellation API call fails"
+        }
+      ]
+    },
+    {
+      "page_name": "proof_of_transfer_sheet",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_proof_of_transfer_sheet",
+          "cta_name": "close",
+          "section_name": "proof_of_transfer_sheet",
+          "description": "User taps the close button to dismiss the upload sheet without submitting"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_upload_file_area",
+          "eventkit_id": "ek_upload_file_area_proof_of_transfer_sheet",
+          "cta_name": "upload_file_area",
+          "section_name": "proof_of_transfer_sheet",
+          "description": "User taps the dashed upload area to open the file source picker"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_upload_document",
+          "eventkit_id": "ek_upload_document_proof_of_transfer_sheet",
+          "cta_name": "upload_document",
+          "section_name": "file_source_picker",
+          "description": "User selects the Documents option to pick a PDF from the file system"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_upload_from_gallery",
+          "eventkit_id": "ek_upload_from_gallery_proof_of_transfer_sheet",
+          "cta_name": "upload_from_gallery",
+          "section_name": "file_source_picker",
+          "description": "User selects the Gallery option to pick an image from the photo library"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_remove_file",
+          "eventkit_id": "ek_remove_file_proof_of_transfer_sheet",
+          "cta_name": "remove_file",
+          "section_name": "proof_of_transfer_sheet",
+          "description": "User taps the remove icon on the selected file preview to discard the file"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_submit_payment_proof",
+          "eventkit_id": "ek_submit_payment_proof_proof_of_transfer_sheet",
+          "cta_name": "submit_payment_proof",
+          "section_name": "proof_of_transfer_sheet",
+          "description": "User taps the submit button to send the proof of transfer"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_payment_proof_submitted",
+          "eventkit_id": "ek_payment_proof_submitted_proof_of_transfer_sheet",
+          "description": "Fires when the payment proof is successfully submitted and the order status updates"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_payment_proof_submission_failed",
+          "eventkit_id": "ek_payment_proof_submission_failed_proof_of_transfer_sheet",
+          "description": "Fires when the payment proof submission API call fails"
+        }
+      ]
+    },
+    {
+      "page_name": "order_review_sheet",
+      "event_name": "ce_p2p_orders_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_star_rating",
+          "eventkit_id": "ek_star_rating_order_review_sheet",
+          "cta_name": "{{rating_value}}",
+          "section_name": "order_review_sheet",
+          "description": "User selects a star rating value (1-5) for the transaction"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_recommend_yes",
+          "eventkit_id": "ek_recommend_yes_order_review_sheet",
+          "cta_name": "recommend_yes",
+          "section_name": "order_review_sheet",
+          "description": "User taps the thumbs up to recommend this trader"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_recommend_no",
+          "eventkit_id": "ek_recommend_no_order_review_sheet",
+          "cta_name": "recommend_no",
+          "section_name": "order_review_sheet",
+          "description": "User taps the thumbs down to not recommend this trader"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_submit_review",
+          "eventkit_id": "ek_submit_review_order_review_sheet",
+          "cta_name": "submit_review",
+          "section_name": "order_review_sheet",
+          "description": "User taps Submit to save the star rating and recommendation"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_review_submitted",
+          "eventkit_id": "ek_review_submitted_order_review_sheet",
+          "description": "Fires when the order review is successfully submitted"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_review_submission_failed",
+          "eventkit_id": "ek_review_submission_failed_order_review_sheet",
+          "description": "Fires when the order review submission fails"
+        }
+      ]
+    }
+  ]
+}

@@ -29,6 +29,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useAlertDialog } from "@/hooks/use-alert-dialog"
 import { KycOnboardingSheet } from "@/components/kyc-onboarding-sheet"
 import { useOrders } from "@/hooks/use-api-queries"
+import { useTrackers } from "@/analytics/useTrackers"
 
 function TimeRemainingDisplay({ expiresAt }) {
   const timeRemaining = useTimeRemaining(expiresAt)
@@ -45,6 +46,7 @@ function TimeRemainingDisplay({ expiresAt }) {
 
 export default function OrdersPage() {
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const router = useRouter()
   const { hideAlert, showAlert } = useAlertDialog()
   const { activeTab, setActiveTab, dateFilter, customDateRange, setDateFilter, setCustomDateRange } =
@@ -77,6 +79,10 @@ export default function OrdersPage() {
 
   const { data: ordersResponse, isLoading, refetch } = useOrders(filters)
   const orders = Array.isArray(ordersResponse?.data) ? ordersResponse.data : []
+
+  useEffect(() => {
+    track("ek_open_orders")
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search)
@@ -135,6 +141,7 @@ export default function OrdersPage() {
 
   const handleRateClick = (e: React.MouseEvent, order: Order) => {
     e.stopPropagation()
+    track("ek_rate_order_orders")
     setIsRatingSidebarOpen(true)
     setSelectedOrderId(order.id)
     setSelectedOrder(order)
@@ -186,6 +193,7 @@ export default function OrdersPage() {
 
   const handleChatClick = (e: React.MouseEvent, order: Order) => {
     e.stopPropagation()
+    track("ek_chat_orders")
     if (isMobile) {
       setSelectedOrder(order)
       setShowChat(true)
@@ -198,6 +206,8 @@ export default function OrdersPage() {
   }
 
   const handleTabChange = (tabValue: string) => {
+    if (tabValue === "active") track("ek_active_tab_orders")
+    else track("ek_past_tab_orders")
     setActiveTab(tabValue)
   }
 
@@ -240,7 +250,12 @@ export default function OrdersPage() {
                 <TableRow
                   className="grid grid-cols-[2fr_1fr] border rounded-lg cursor-pointer gap-2 py-4"
                   key={order.id}
-                  onClick={() => navigateToOrderDetails(order.id)}
+                  onClick={() => {
+                    track("ek_order_item_orders", {
+                      section_name: activeTab === "active" ? "active_orders" : "past_orders",
+                    })
+                    navigateToOrderDetails(order.id)
+                  }}
                 >
                   {activeTab === "past" && (
                     <TableCell className="py-0 px-4 align-top text-slate-600 text-xs row-start-4 col-span-full">
@@ -411,7 +426,10 @@ export default function OrdersPage() {
               <DateFilter
                 value={dateFilter}
                 customRange={customDateRange}
-                onValueChange={setDateFilter}
+                onValueChange={(val) => {
+                  track("ek_date_filter_orders")
+                  setDateFilter(val)
+                }}
                 onCustomRangeChange={setCustomDateRange}
               />
             )}

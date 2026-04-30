@@ -1,0 +1,397 @@
+{
+  "version": "0.0.1",
+  "flow": "p2p_profile",
+  "last_updated": "2026-04-30",
+  "pages": [
+    {
+      "page_name": "profile",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "open",
+          "eventkit_id": "ek_open_profile",
+          "description": "User opens the Profile page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_my_stats",
+          "eventkit_id": "ek_my_stats_profile",
+          "cta_name": "my_stats",
+          "description": "User taps the My Stats menu item to navigate to their trading statistics"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_closed_group",
+          "eventkit_id": "ek_closed_group_profile",
+          "cta_name": "closed_group",
+          "description": "User taps the Closed Group menu item (Diamond tier only)"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_payment_methods",
+          "eventkit_id": "ek_payment_methods_profile",
+          "cta_name": "payment_methods",
+          "description": "User taps the Payment Methods menu item to manage saved payment methods"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_following",
+          "eventkit_id": "ek_following_profile",
+          "cta_name": "following",
+          "description": "User taps the Following menu item to view their following and followers list"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_blocked_users",
+          "eventkit_id": "ek_blocked_users_profile",
+          "cta_name": "blocked_users",
+          "description": "User taps the Blocked Users menu item to manage blocked traders"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_trade_partners",
+          "eventkit_id": "ek_trade_partners_profile",
+          "cta_name": "trade_partners",
+          "description": "User taps the Trade Partners menu item to view counterparties"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_help_centre",
+          "eventkit_id": "ek_help_centre_profile",
+          "cta_name": "help_centre",
+          "description": "User taps the Help Centre menu item"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry",
+          "eventkit_id": "ek_retry_profile",
+          "cta_name": "retry",
+          "section_name": "error_state",
+          "description": "User taps Retry after the profile page fails to load"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_send_feedback",
+          "eventkit_id": "ek_send_feedback_profile",
+          "cta_name": "send_feedback",
+          "description": "User taps the Send Feedback menu item to open the feedback bottom sheet"
+        }
+      ]
+    },
+    {
+      "page_name": "profile_completed",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "open",
+          "eventkit_id": "ek_open_profile_completed",
+          "description": "User lands on the Profile Completed success page after their P2P profile is created"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_go_to_market",
+          "eventkit_id": "ek_go_to_market_profile_completed",
+          "cta_name": "go_to_market",
+          "description": "User taps Go to Market to navigate to the Markets page"
+        }
+      ]
+    },
+    {
+      "page_name": "finish_verification",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_review_verification",
+          "eventkit_id": "ek_review_verification_finish_verification",
+          "cta_name": "review_verification",
+          "description": "User taps Review Verification to check their KYC status and proceed to Markets"
+        }
+      ]
+    },
+    {
+      "page_name": "blocked_users",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_blocked_users",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Profile page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_clear_search",
+          "eventkit_id": "ek_clear_search_blocked_users",
+          "cta_name": "clear_search",
+          "description": "User taps the clear button to reset the search query"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advertiser_profile",
+          "eventkit_id": "ek_advertiser_profile_blocked_users",
+          "cta_name": "advertiser_profile",
+          "section_name": "blocked_user_list",
+          "description": "User taps a blocked user's name to view their advertiser profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_unblock_user",
+          "eventkit_id": "ek_unblock_user_blocked_users",
+          "cta_name": "unblock_user",
+          "section_name": "blocked_user_list",
+          "description": "User taps the Unblock button on a blocked user tile"
+        }
+      ]
+    },
+    {
+      "page_name": "counterparties",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_counterparties",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Profile page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_clear_search",
+          "eventkit_id": "ek_clear_search_counterparties",
+          "cta_name": "clear_search",
+          "description": "User taps the clear button to reset the search query"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advertiser_profile",
+          "eventkit_id": "ek_advertiser_profile_counterparties",
+          "cta_name": "advertiser_profile",
+          "section_name": "counterparty_list",
+          "description": "User taps a counterparty's name to view their advertiser profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_block_user",
+          "eventkit_id": "ek_block_user_counterparties",
+          "cta_name": "block_user",
+          "section_name": "counterparty_list",
+          "description": "User taps the Block button on a trade partner to block them"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_unblock_user",
+          "eventkit_id": "ek_unblock_user_counterparties",
+          "cta_name": "unblock_user",
+          "section_name": "counterparty_list",
+          "description": "User taps the Unblock button on a currently blocked counterparty"
+        }
+      ]
+    },
+    {
+      "page_name": "following",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_following",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Profile page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_following_tab",
+          "eventkit_id": "ek_following_tab_following",
+          "cta_name": "{{following_tab || followers_tab}}",
+          "description": "User switches to the Following/followers tab to see traders they follow"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_clear_search",
+          "eventkit_id": "ek_clear_search_following",
+          "cta_name": "clear_search",
+          "description": "User taps the clear button to reset the search query"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advertiser_profile",
+          "eventkit_id": "ek_advertiser_profile_following",
+          "cta_name": "advertiser_profile",
+          "section_name": "{{following_tab | followers_tab}}",
+          "description": "User taps a followed trader's name or follower's name to view their advertiser profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_unfollow_user",
+          "eventkit_id": "ek_unfollow_user_following",
+          "cta_name": "unfollow_user",
+          "section_name": "following_tab",
+          "description": "User taps the Unfollow button to open the unfollow confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_unfollow",
+          "eventkit_id": "ek_confirm_unfollow_following",
+          "cta_name": "confirm_unfollow",
+          "section_name": "unfollow_confirmation_sheet",
+          "description": "User confirms unfollowing a trader from the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_unfollow",
+          "eventkit_id": "ek_cancel_unfollow_following",
+          "cta_name": "cancel_unfollow",
+          "section_name": "unfollow_confirmation_sheet",
+          "description": "User cancels the unfollow action and dismisses the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_follow_back",
+          "eventkit_id": "ek_follow_back_following",
+          "cta_name": "follow_back",
+          "section_name": "followers_tab",
+          "description": "User taps the Follow back button on a follower they do not yet follow"
+        }
+      ]
+    },
+    {
+      "page_name": "advertiser_profile",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_advertiser_profile",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the previous page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_follow",
+          "eventkit_id": "ek_follow_advertiser_profile",
+          "cta_name": "follow",
+          "section_name": "profile_header",
+          "description": "User taps the Follow button to follow this advertiser"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_unfollow",
+          "eventkit_id": "ek_unfollow_advertiser_profile",
+          "cta_name": "unfollow",
+          "section_name": "profile_header",
+          "description": "User taps the Unfollow button to open the unfollow confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_unfollow",
+          "eventkit_id": "ek_confirm_unfollow_advertiser_profile",
+          "cta_name": "confirm_unfollow",
+          "section_name": "unfollow_sheet",
+          "description": "User confirms unfollowing this advertiser from the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_unfollow",
+          "eventkit_id": "ek_cancel_unfollow_advertiser_profile",
+          "cta_name": "cancel_unfollow",
+          "section_name": "unfollow_sheet",
+          "description": "User cancels the unfollow action from the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_block_user",
+          "eventkit_id": "ek_block_user_advertiser_profile",
+          "cta_name": "block_user",
+          "section_name": "profile_header",
+          "description": "User taps the Block button to open the block confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_block",
+          "eventkit_id": "ek_confirm_block_advertiser_profile",
+          "cta_name": "confirm_block",
+          "section_name": "block_confirmation_sheet",
+          "description": "User confirms blocking this advertiser from the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_block",
+          "eventkit_id": "ek_cancel_block_advertiser_profile",
+          "cta_name": "cancel_block",
+          "section_name": "block_confirmation_sheet",
+          "description": "User cancels the block action from the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_unblock_user",
+          "eventkit_id": "ek_unblock_user_advertiser_profile",
+          "cta_name": "unblock_user",
+          "section_name": "profile_header",
+          "description": "User taps the Unblock button to directly unblock this advertiser"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_view_extended_stats",
+          "eventkit_id": "ek_view_extended_stats_advertiser_profile",
+          "cta_name": "view_extended_stats",
+          "section_name": "stats_section",
+          "description": "User taps the View more link to open the extended advertiser stats bottom sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advert_action",
+          "eventkit_id": "ek_advert_action_advertiser_profile",
+          "cta_name": "{{advert_type}}",
+          "section_name": "online_ads",
+          "description": "User taps the buy or sell button on one of the advertiser's live ads"
+        }
+      ]
+    },
+    {
+      "page_name": "closed_group",
+      "event_name": "ce_p2p_profile_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_closed_group",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Profile page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_clear_all_members",
+          "eventkit_id": "ek_clear_all_members_closed_group",
+          "cta_name": "clear_all_members",
+          "description": "User taps the Clear All button to open the clear all confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_clear_all",
+          "eventkit_id": "ek_confirm_clear_all_closed_group",
+          "cta_name": "confirm_clear_all",
+          "section_name": "clear_all_confirmation_sheet",
+          "description": "User confirms removing all members from the closed group"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_clear_all",
+          "eventkit_id": "ek_cancel_clear_all_closed_group",
+          "cta_name": "cancel_clear_all",
+          "section_name": "clear_all_confirmation_sheet",
+          "description": "User cancels the clear all action from the confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_remove_member",
+          "eventkit_id": "ek_remove_member_closed_group",
+          "cta_name": "remove_member",
+          "section_name": "members_list",
+          "description": "User taps the remove icon on a member tile to remove them from the closed group"
+        }
+      ]
+    }
+  ]
+}

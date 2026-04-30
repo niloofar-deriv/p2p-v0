@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import { useAlertDialog } from "@/hooks/use-alert-dialog"
 import { KycOnboardingSheet } from "@/components/kyc-onboarding-sheet"
 import { useTranslations } from "@/lib/i18n/use-translations"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface EmptyStateProps {
   adType?: "buy" | "sell"
@@ -39,8 +40,10 @@ export default function EmptyState({
   const isPoaExpired = userId && onboardingStatus?.kyc?.poa_status !== "approved"
   const { hideAlert, showAlert } = useAlertDialog()
   const { t } = useTranslations()
+  const { track } = useTrackers()
 
   const createAd = () => {
+    if (route === "markets") track("ek_create_ad_markets")
     if (userId && verificationStatus?.phone_verified && !isPoiExpired && !isPoaExpired) {
       const operation = adType === "buy" ? "sell" : "buy"
       router.push(`/ads/create?operation=${operation}`)

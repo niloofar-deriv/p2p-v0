@@ -11,8 +11,10 @@ import { TemporaryBanAlert } from "@/components/temporary-ban-alert"
 import { P2PAccessRemoved } from "@/components/p2p-access-removed"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import { KycOnboardingSheet } from "@/components/kyc-onboarding-sheet"
+import { useTrackers } from "@/analytics/useTrackers"
 
 export default function ProfilePage() {
+  const { track } = useTrackers()
   const { hideAlert, showAlert } = useAlertDialog()
   const { userData: user } = useUserDataStore()
   const { data: meData, isLoading, error } = useMe()
@@ -80,6 +82,10 @@ export default function ProfilePage() {
       },
     }
   }, [meData, t])
+
+  useEffect(() => {
+    track("ek_open_profile")
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (shouldShowKyc && !showKycPopup) {

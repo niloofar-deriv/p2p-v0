@@ -1,0 +1,269 @@
+{
+  "last_verified_commit": "2317330deabb333cb737d896f41861d83cb08f22",
+  "rows": {
+    "ek_open_markets": {
+      "entry_point": "BuySellPage.render",
+      "chain": "app/page.tsx → useEffect([], mount)",
+      "outcome_function": "app/page.tsx:434 useEffect",
+      "notes": "fires once on component mount, inside useEffect with empty deps"
+    },
+    "ek_profile_markets": {
+      "entry_point": "Sidebar.render",
+      "chain": "components/sidebar.tsx → profile <a> onClick",
+      "outcome_function": "components/sidebar.tsx:390 onClick={() => track(\"ek_profile_markets\")}",
+      "notes": "profile link to homeProfileUrl in sidebar nav"
+    },
+    "ek_notifications_markets": {
+      "entry_point": "Header.render + Sidebar.render",
+      "chain": "components/header.tsx → div onClick; components/sidebar.tsx → div onClick",
+      "outcome_function": "components/header.tsx:104 + components/sidebar.tsx:250",
+      "notes": "notifications bell wrapper div; fires on bell click in both mobile header and desktop sidebar"
+    },
+    "ek_ask_amy_markets": {
+      "entry_point": "Sidebar.handleLiveChat",
+      "chain": "components/sidebar.tsx → handleLiveChat → window.Intercom('show')",
+      "outcome_function": "components/sidebar.tsx:239 handleLiveChat()",
+      "notes": "Live Chat nav item calls window.Intercom('show'); tracker fires before Intercom call"
+    },
+    "ek_search_markets": {
+      "entry_point": "Header.render",
+      "chain": "components/header.tsx → search Button onClick → setUserIsSearchOpen(true)",
+      "outcome_function": "components/header.tsx:95 onClick",
+      "notes": "fires before MobileAdvertiserSearch sheet opens"
+    },
+    "ek_payment_currency_markets": {
+      "entry_point": "BuySellPage.render",
+      "chain": "app/page.tsx → CurrencyFilter trigger Button onClick",
+      "outcome_function": "app/page.tsx:500 onClick",
+      "notes": "fires before Popover/Drawer opens"
+    },
+    "ek_buy_markets": {
+      "entry_point": "BuySellPage.render",
+      "chain": "app/page.tsx → Tabs onValueChange when value === 'sell'",
+      "outcome_function": "app/page.tsx:459 Tabs onValueChange",
+      "notes": "tab value 'sell' = Buy tab (shows sell advertisers); fires when switching to buy"
+    },
+    "ek_sell_markets": {
+      "entry_point": "BuySellPage.render",
+      "chain": "app/page.tsx → Tabs onValueChange when value === 'buy'",
+      "outcome_function": "app/page.tsx:459 Tabs onValueChange",
+      "notes": "tab value 'buy' = Sell tab (shows buy advertisers); fires when switching to sell"
+    },
+    "ek_payment_method_filter_markets": {
+      "entry_point": "BuySellPage.render",
+      "chain": "app/page.tsx → PaymentMethodsFilter trigger Button onClick",
+      "outcome_function": "app/page.tsx:567 onClick",
+      "notes": "fires before Popover/Drawer opens"
+    },
+    "ek_filter_markets": {
+      "entry_point": "BuySellPage.render",
+      "chain": "app/page.tsx → MarketFilterDropdown trigger Button onClick",
+      "outcome_function": "app/page.tsx:609 onClick",
+      "notes": "fires before filter sheet opens"
+    },
+    "ek_advert_action_markets": {
+      "entry_point": "BuySellPage.handleOrderClick",
+      "chain": "app/page.tsx → advert buy/sell button → handleOrderClick(ad)",
+      "outcome_function": "app/page.tsx:307 handleOrderClick",
+      "notes": "advert_type = ad.type === 'buy' ? 'sell' : 'buy' (user's action is opposite of ad type)"
+    },
+    "ek_advertiser_profile_markets": {
+      "entry_point": "BuySellPage.handleAdvertiserClick",
+      "chain": "app/page.tsx → advertiser name/avatar onClick → handleAdvertiserClick(advertiserId)",
+      "outcome_function": "app/page.tsx:283 handleAdvertiserClick",
+      "notes": "fires on click before any verification gate check"
+    },
+    "ek_create_ad_markets": {
+      "entry_point": "EmptyState.createAd",
+      "chain": "components/empty-state.tsx → createAd() when route === 'markets'",
+      "outcome_function": "components/empty-state.tsx:46 createAd()",
+      "notes": "guarded by route === 'markets' to avoid firing from non-markets empty states"
+    },
+    "ek_back_markets_search": {
+      "entry_point": "MobileAdvertiserSearch.handleBack",
+      "chain": "components/mobile-advertiser-search.tsx → back arrow Button onClick → handleBack()",
+      "outcome_function": "components/mobile-advertiser-search.tsx:152 handleBack()",
+      "notes": "mobile only; sidebar has no back button (inline search, no sheet navigation)"
+    },
+    "ek_clear_search_markets_search": {
+      "entry_point": "MobileAdvertiserSearch.handleClear + Sidebar.handleClear",
+      "chain": "components/mobile-advertiser-search.tsx + components/sidebar.tsx → clear button onClick",
+      "outcome_function": "components/mobile-advertiser-search.tsx:145 + components/sidebar.tsx:167",
+      "notes": "both mobile and desktop have clear search button"
+    },
+    "ek_buy_tab_markets_search": {
+      "entry_point": "MobileAdvertiserSearch.render + Sidebar.render",
+      "chain": "Tabs onValueChange when v === 'sell' in both search components",
+      "outcome_function": "components/mobile-advertiser-search.tsx:210 + components/sidebar.tsx:290",
+      "notes": "tab value 'sell' = Buy tab in search (same tab logic as markets page)"
+    },
+    "ek_sell_tab_markets_search": {
+      "entry_point": "MobileAdvertiserSearch.render + Sidebar.render",
+      "chain": "Tabs onValueChange when v === 'buy' in both search components",
+      "outcome_function": "components/mobile-advertiser-search.tsx:210 + components/sidebar.tsx:290",
+      "notes": "tab value 'buy' = Sell tab in search"
+    },
+    "ek_advert_action_markets_search": {
+      "entry_point": "MobileAdvertiserSearch.handleBuySellClick + Sidebar.handleBuySellClick",
+      "chain": "advert action button → handleBuySellClick(ad) in both search components",
+      "outcome_function": "components/mobile-advertiser-search.tsx:139 + components/sidebar.tsx:158",
+      "notes": "advert_type = ad.type === 'buy' ? 'sell' : 'buy'"
+    },
+    "ek_advertiser_profile_markets_search": {
+      "entry_point": "MobileAdvertiserSearch.handleAdvertiserClick + Sidebar.handleAdvertiserClick",
+      "chain": "advertiser name/avatar onClick in both search components",
+      "outcome_function": "components/mobile-advertiser-search.tsx:113 + components/sidebar.tsx:134",
+      "notes": "fires on click regardless of verification gate"
+    },
+    "ek_close_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.handleClose",
+      "chain": "components/buy-sell/order-sidebar.tsx → close Button onClick + backdrop onClick → handleClose()",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:486 handleClose()",
+      "notes": "fires on every close including backdrop click (onClick={handleClose} on backdrop div)"
+    },
+    "ek_select_payment_method_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.handleShowPaymentSelection",
+      "chain": "components/buy-sell/order-sidebar.tsx → payment method selector div onClick → handleShowPaymentSelection()",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:311 handleShowPaymentSelection()",
+      "notes": "fires before payment selection alert opens; click event = intent to select"
+    },
+    "ek_place_order_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.handleSubmit",
+      "chain": "components/buy-sell/order-sidebar.tsx → Place Order Button onClick → handleSubmit()",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:341 handleSubmit()",
+      "notes": "fires at top of handleSubmit to record click intent; outcomes tracked by trigger events"
+    },
+    "ek_order_rate_slippage_detected_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.handleSubmit — float rate check branch",
+      "chain": "handleSubmit() → float rate check → if (marketRate != ad.effective_rate)",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:349 handleSubmit()",
+      "notes": "trigger event; fires before showRateChangeConfirmation is set"
+    },
+    "ek_confirm_rate_change_markets_advert_sheet": {
+      "entry_point": "RateChangeConfirmation.onConfirm",
+      "chain": "RateChangeConfirmation onConfirm={() => { track(...); proceedWithOrder() }}",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:758 RateChangeConfirmation onConfirm",
+      "notes": "tracker fires before proceedWithOrder() is called"
+    },
+    "ek_cancel_rate_change_markets_advert_sheet": {
+      "entry_point": "RateChangeConfirmation.onCancel",
+      "chain": "RateChangeConfirmation onCancel={() => { track(...); setShowRateChangeConfirmation(false) }}",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:760 RateChangeConfirmation onCancel",
+      "notes": "fires on Cancel button in rate slippage dialog"
+    },
+    "ek_order_created_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.proceedWithOrder — success branch",
+      "chain": "proceedWithOrder() → createOrder() → if (order.errors.length === 0) → track → router.push",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:470 proceedWithOrder()",
+      "notes": "trigger event; fires immediately before router.push to order detail"
+    },
+    "ek_order_creation_failed_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.proceedWithOrder — error branches",
+      "chain": "proceedWithOrder() → createOrder() → if (order.errors.length > 0) and catch block",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:377 + 474 proceedWithOrder()",
+      "notes": "trigger event; fires for all API error codes (line 377) and catch errors (line 474)"
+    },
+    "ek_retry_order_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.proceedWithOrder — OrderFloatRateSlippage onConfirm",
+      "chain": "proceedWithOrder() → OrderFloatRateSlippage alert → onConfirm → track",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:404 onConfirm",
+      "notes": "'Try again' button on rate-moved-too-much dialog"
+    },
+    "ek_view_other_ads_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.proceedWithOrder — multiple error onConfirm callbacks",
+      "chain": "proceedWithOrder() → OrderExists/v1InsufficientFunds/OrderCountryInvalid/v1DebitFailed onConfirm",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:388 + 414 + 425 + 436 onConfirm",
+      "notes": "'Try different ad' / 'View other ads' button; fires in 4 error code handlers"
+    },
+    "ek_manage_blocked_markets_advert_sheet": {
+      "entry_point": "BLOCKED",
+      "chain": "N/A",
+      "outcome_function": "BLOCKED",
+      "notes": "No 'Manage blocked' button exists in any order error dialog — see eventkit/BLOCKED.md"
+    },
+    "ek_view_active_order_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.proceedWithOrder — OrderExists alert onCancel",
+      "chain": "proceedWithOrder() → OrderExists alert → onCancel → track → router.push",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:392 onCancel",
+      "notes": "'View order' button navigates to active order detail"
+    },
+    "ek_open_live_chat_markets_advert_sheet": {
+      "entry_point": "OrderSidebar.proceedWithOrder — UserReadOnly alert onConfirm",
+      "chain": "proceedWithOrder() → UserReadOnly alert → onConfirm → track → window.Intercom('show')",
+      "outcome_function": "components/buy-sell/order-sidebar.tsx:455 onConfirm",
+      "notes": "'Open live chat' button calls window.Intercom('show')"
+    },
+    "ek_view_profile_markets_advert_sheet": {
+      "entry_point": "BLOCKED",
+      "chain": "N/A",
+      "outcome_function": "BLOCKED",
+      "notes": "No 'View profile' button exists in any order error dialog — see eventkit/BLOCKED.md"
+    },
+    "ek_toggle_followed_users_markets_filter": {
+      "entry_point": "MarketFilterDropdown.handleFilterChange",
+      "chain": "components/market-filter/market-filter-dropdown.tsx → fromFollowing checkbox → handleFilterChange(key)",
+      "outcome_function": "components/market-filter/market-filter-dropdown.tsx:74 handleFilterChange()",
+      "notes": "fires when key === 'fromFollowing'"
+    },
+    "ek_sort_by_tier_level_markets_filter": {
+      "entry_point": "MarketFilterDropdown.handleSortByChange",
+      "chain": "components/market-filter/market-filter-dropdown.tsx → sort RadioGroup → handleSortByChange(value)",
+      "outcome_function": "components/market-filter/market-filter-dropdown.tsx:87 handleSortByChange()",
+      "notes": "fires when value === 'trade_band_rank'"
+    },
+    "ek_sort_by_exchange_rate_markets_filter": {
+      "entry_point": "MarketFilterDropdown.handleSortByChange",
+      "chain": "components/market-filter/market-filter-dropdown.tsx → sort RadioGroup → handleSortByChange(value)",
+      "outcome_function": "components/market-filter/market-filter-dropdown.tsx:88 handleSortByChange()",
+      "notes": "fires when value === 'exchange_rate'"
+    },
+    "ek_sort_by_user_rating_markets_filter": {
+      "entry_point": "MarketFilterDropdown.handleSortByChange",
+      "chain": "components/market-filter/market-filter-dropdown.tsx → sort RadioGroup → handleSortByChange(value)",
+      "outcome_function": "components/market-filter/market-filter-dropdown.tsx:89 handleSortByChange()",
+      "notes": "fires when value === 'user_rating_average_lifetime'"
+    },
+    "ek_apply_filters_markets_filter": {
+      "entry_point": "MarketFilterDropdown.handleApply",
+      "chain": "components/market-filter/market-filter-dropdown.tsx → Apply Button onClick → handleApply()",
+      "outcome_function": "components/market-filter/market-filter-dropdown.tsx:59 handleApply()",
+      "notes": "mobile only (Apply button); desktop applies immediately on change via handleFilterChange/handleSortByChange"
+    },
+    "ek_reset_filters_markets_filter": {
+      "entry_point": "MarketFilterDropdown.handleReset",
+      "chain": "components/market-filter/market-filter-dropdown.tsx → Reset Button onClick → handleReset()",
+      "outcome_function": "components/market-filter/market-filter-dropdown.tsx:51 handleReset()",
+      "notes": ""
+    },
+    "ek_select_all_payment_methods_markets_payment_method_filter": {
+      "entry_point": "PaymentMethodsFilter.handleSelectAll",
+      "chain": "components/payment-methods-filter/payment-methods-filter.tsx → All Payment Methods checkbox → handleSelectAll()",
+      "outcome_function": "components/payment-methods-filter/payment-methods-filter.tsx:88 handleSelectAll()",
+      "notes": "fires when checked === true ('All Payment Methods' selected)"
+    },
+    "ek_select_payment_method_markets_payment_method_filter": {
+      "entry_point": "PaymentMethodsFilter.handleMethodToggle",
+      "chain": "components/payment-methods-filter/payment-methods-filter.tsx → method checkbox → handleMethodToggle(methodId)",
+      "outcome_function": "components/payment-methods-filter/payment-methods-filter.tsx:104 handleMethodToggle()",
+      "notes": "payment_method_name = methodId (method identifier string)"
+    },
+    "ek_apply_filter_markets_payment_method_filter": {
+      "entry_point": "PaymentMethodsFilter.handleApply",
+      "chain": "components/payment-methods-filter/payment-methods-filter.tsx → Apply Button onClick → handleApply()",
+      "outcome_function": "components/payment-methods-filter/payment-methods-filter.tsx:142 handleApply()",
+      "notes": ""
+    },
+    "ek_reset_filter_markets_payment_method_filter": {
+      "entry_point": "PaymentMethodsFilter.handleReset",
+      "chain": "components/payment-methods-filter/payment-methods-filter.tsx → Reset Button onClick → handleReset()",
+      "outcome_function": "components/payment-methods-filter/payment-methods-filter.tsx:132 handleReset()",
+      "notes": ""
+    },
+    "ek_select_payment_currency_markets_payment_currency": {
+      "entry_point": "CurrencyFilter.handleCurrencySelect",
+      "chain": "components/currency-filter/currency-filter.tsx → currency item onClick → handleCurrencySelect(currencyCode)",
+      "outcome_function": "components/currency-filter/currency-filter.tsx:59 handleCurrencySelect()",
+      "notes": "currency_code = the selected currency code string"
+    }
+  }
+}

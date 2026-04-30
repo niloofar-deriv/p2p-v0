@@ -19,6 +19,8 @@ import { useTranslations } from "@/lib/i18n/use-translations"
 import { useWebSocketContext } from "@/contexts/websocket-context"
 import { useAddPaymentMethod, useUserPaymentMethods } from "@/hooks/use-api-queries"
 import RateChangeConfirmation from "./rate-change-confirmation"
+import AdUpdatedConfirmation from "./ad-updated-confirmation"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface OrderSidebarProps {
   isOpen: boolean
@@ -207,6 +209,9 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
   const [marketRate, setMarketRate] = useState<number | null>(null)
   const [showRateChangeConfirmation, setShowRateChangeConfirmation] = useState(false)
   const [lockedConfirmationRate, setLockedConfirmationRate] = useState<number | null>(null)
+  const [hasAdvertUpdated, setHasAdvertUpdated] = useState(false)
+  const [showAdUpdatedModal, setShowAdUpdatedModal] = useState(false)
+  const { track } = useTrackers()
 
   // Use React Query hooks
   const addPaymentMethod = useAddPaymentMethod()
@@ -285,6 +290,7 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
   }, [amount, ad, orderType, p2pBalance, t, marketRate])
 
   const handleShowPaymentSelection = () => {
+    track("ek_select_payment_method_markets_advert_sheet")
     showAlert({
       title: t("paymentMethod.title"),
       description: (
@@ -314,7 +320,15 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
   const handleSubmit = async () => {
     if (!ad) return
 
+    track("ek_place_order_markets_advert_sheet")
+
+    if (hasAdvertUpdated) {
+      setShowAdUpdatedModal(true)
+      return
+    }
+
     if (ad.exchange_rate_type == "float" && marketRate && marketRate != ad.effective_rate) {
+      track("ek_order_rate_slippage_detected_markets_advert_sheet")
       setLockedConfirmationRate(marketRate)
       setShowRateChangeConfirmation(true)
       return
@@ -337,7 +351,10 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
       const order = await createOrder(ad.id, rateToUse, numAmount, selectedPaymentMethods)
       if (order.errors.length > 0) {
         const errorCode = order.errors[0].code
-        if (errorCode === "OrderExists") {
+        track("ek_order_creation_failed_markets_advert_sheet", { error_code: errorCode, error_message: errorCode })
+        if (errorCode === "OrderAdvertVersionChanged") {
+          setShowAdUpdatedModal(true)
+        } else if (errorCode === "OrderExists") {
           showAlert({
             title: "Active order detected",
             description: t("order.orderExists"),
@@ -345,9 +362,11 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
             confirmText: "Try different ad",
             type: "warning",
             onConfirm: () => {
+              track("ek_view_other_ads_markets_advert_sheet")
               handleClose()
             },
             onCancel: () => {
+              track("ek_view_active_order_markets_advert_sheet")
               router.push("/orders/" + order.errors[0].detail.order_id)
             }
           })
@@ -358,6 +377,63 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
               "The market rate moved significantly before we could place your order. Try again with the latest rate.",
             confirmText: "Try again",
             type: "warning",
+            onConfirm: () => {
+              track("ek_retry_order_markets_advert_sheet")
+            },
+          })
+        } else if (errorCode === "v1InsufficientFunds") {
+          showAlert({
+            title: t("order.insufficientFunds"),
+            description: t("order.insufficientFundsDescription"),
+            confirmText: t("order.viewOtherAds"),
+            type: "warning",
+            onConfirm: () => {
+              track("ek_view_other_ads_markets_advert_sheet")
+              handleClose()
+            },
+          })
+        } else if (errorCode === "OrderCountryInvalid") {
+          showAlert({
+            title: t("order.adNotAvailableTitle"),
+            description: t("order.adCountryInvalidDescription"),
+            confirmText: t("order.viewOtherAds"),
+            type: "warning",
+            onConfirm: () => {
+              track("ek_view_other_ads_markets_advert_sheet")
+              handleClose()
+            },
+          })
+        } else if (errorCode === "v1DebitFailed") {
+          showAlert({
+            title: t("order.adNotAvailableTitle"),
+            description: t("order.adNotAvailableDescription"),
+            confirmText: t("order.viewOtherAds"),
+            type: "warning",
+            onConfirm: () => {
+              track("ek_view_other_ads_markets_advert_sheet")
+              handleClose()
+            },
+          })
+        } else if (errorCode === "OrderExchangeRateRequired") {
+          showAlert({
+            title: t("order.exchangeRateRequiredTitle"),
+            description: t("order.exchangeRateRequiredDescription"),
+            confirmText: t("order.exchangeRateRequiredCta"),
+            type: "warning",
+          })
+        } else if (errorCode === "UserReadOnly") {
+          showAlert({
+            title: t("order.userReadOnlyTitle"),
+            description: t("order.userReadOnlyDescription"),
+            confirmText: t("order.userReadOnlyOpenChat"),
+            cancelText: t("order.userReadOnlyMaybeLater"),
+            type: "warning",
+            onConfirm: () => {
+              track("ek_open_live_chat_markets_advert_sheet")
+              if (typeof window !== "undefined" && window.Intercom) {
+                window.Intercom("show")
+              }
+            },
           })
         } else {
           showAlert({
@@ -368,9 +444,12 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
           })
         }
       } else {
+        track("ek_order_created_markets_advert_sheet")
         router.push("/orders/" + order.data.id)
       }
     } catch (error) {
+      const errorCode = error instanceof Error ? error.message : "Unknown Error"
+      track("ek_order_creation_failed_markets_advert_sheet", { error_code: "order_creation_error", error_message: errorCode })
       setOrderStatus({
         success: false,
         message: error instanceof Error ? error.message : "Failed to create order. Please try again.",
@@ -381,6 +460,7 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
   }
 
   const handleClose = () => {
+    track("ek_close_markets_advert_sheet")
     setIsAnimating(false)
     setTimeout(() => {
       setTotalAmount(0)
@@ -645,8 +725,9 @@ export default function OrderSidebar({ isOpen, onClose, ad, orderType, p2pBalanc
       {ad && (
         <RateChangeConfirmation
           isOpen={showRateChangeConfirmation}
-          onConfirm={proceedWithOrder}
+          onConfirm={() => { track("ek_confirm_rate_change_markets_advert_sheet"); proceedWithOrder() }}
           onCancel={() => {
+            track("ek_cancel_rate_change_markets_advert_sheet")
             setShowRateChangeConfirmation(false)
             setLockedConfirmationRate(null)
           }}

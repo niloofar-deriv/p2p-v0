@@ -14,6 +14,7 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import EmptyState from "@/components/empty-state"
 import { cn } from "@/lib/utils"
 import { useTranslations } from "@/lib/i18n/use-translations"
+import { useTrackers } from "@/analytics/useTrackers"
 
 export interface PaymentMethod {
   display_name: string
@@ -43,6 +44,7 @@ export default function PaymentMethodsFilter({
   const [tempSelectedMethods, setTempSelectedMethods] = useState<string[]>(selectedMethods)
   const isMobile = useIsMobile()
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const scrollContainerRef = useRef<HTMLDivElement>(null)
   const scrollPositionRef = useRef<number | null>(null)
 
@@ -83,6 +85,7 @@ export default function PaymentMethodsFilter({
     }
 
     if (checked) {
+      track("ek_select_all_payment_methods_markets_payment_method_filter")
       const newSelection = [...new Set([...tempSelectedMethods, ...paymentMethods.map((m) => m.method)])]
       setTempSelectedMethods(newSelection)
     } else {
@@ -98,6 +101,7 @@ export default function PaymentMethodsFilter({
   }, [])
 
   const handleMethodToggle = (methodId: string) => {
+    track("ek_select_payment_method_markets_payment_method_filter", { payment_method_name: methodId })
     if (scrollContainerRef.current) {
       scrollPositionRef.current = scrollContainerRef.current.scrollTop
     }
@@ -125,6 +129,7 @@ export default function PaymentMethodsFilter({
   }
 
   const handleReset = () => {
+    track("ek_reset_filter_markets_payment_method_filter")
     const allMethodIds = paymentMethods.map((method) => method.method)
     setTempSelectedMethods(allMethodIds)
     onSelectionChange(allMethodIds)
@@ -134,6 +139,7 @@ export default function PaymentMethodsFilter({
   }
 
   const handleApply = () => {
+    track("ek_apply_filter_markets_payment_method_filter")
     onSelectionChange(tempSelectedMethods)
     setIsOpen(false)
     onOpenChangeProp?.(false)

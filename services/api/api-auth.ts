@@ -243,6 +243,7 @@ export async function logout(): Promise<void> {
     }
 
     useUserDataStore.getState().clearUserData()
+    Analytics.reset()
 
     localStorage.removeItem("auth_token")
     localStorage.removeItem("socket_token")

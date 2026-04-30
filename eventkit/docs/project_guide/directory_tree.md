@@ -1,0 +1,81 @@
+# Directory Tree
+
+Source files relevant to tracker instrumentation (excludes node_modules, .next, tests, generated code).
+
+```
+analytics/
+  flows/
+    useP2pMarketsTrackers.ts
+    useP2pMyAdsTrackers.ts
+    useP2pOrdersTrackers.ts
+    useP2pProfileTrackers.ts
+    useP2pWalletsTrackers.ts
+  useAnalytics.ts
+  useTrackEvent.ts
+  useTrackers.ts
+app/
+  ads/
+    components/
+      ad-actions-menu.tsx
+      ad-details-form.tsx
+      ad-payment-methods.tsx
+      ad-success-screen.tsx
+      my-ads-header.tsx
+      my-ads-table.tsx
+      payment-details-form.tsx
+      payment-method-bottom-sheet.tsx
+      share-ad-page.tsx
+      shared/
+        multi-step-ad-form.tsx
+      visibility-status-dialog.tsx
+    create/
+      page.tsx
+    edit/[id]/
+      page.tsx
+    page.tsx
+  advertiser/[id]/
+    page.tsx
+  analytics-provider.tsx
+  layout.tsx
+  login/
+    _page.tsx  ← NOT a route (prefixed _)
+  main.tsx
+  orders/
+    [id]/
+      page.tsx
+    page.tsx
+  page.tsx
+  profile/
+    components/
+      blocked-tab.tsx
+      closed-group.tsx
+      counterparties-tab.tsx
+      follows-tab.tsx
+      payment-methods-tab.tsx
+      stats-tabs.tsx
+    page.tsx
+  wallet/
+    components/
+      transfer.tsx
+      wallet-summary.tsx
+    page.tsx
+components/
+  buy-sell/
+    order-sidebar.tsx
+    rate-change-confirmation.tsx
+    ad-updated-confirmation.tsx
+  currency-filter/
+    currency-filter.tsx
+  empty-state.tsx
+  header.tsx
+  market-filter/
+    market-filter-dropdown.tsx
+  mobile-advertiser-search.tsx
+  payment-methods-filter/
+    payment-methods-filter.tsx
+  sidebar.tsx
+stores/
+  language-store.ts
+  market-filter-store.ts
+  user-data-store.ts
+```

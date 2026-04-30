@@ -37,9 +37,11 @@ import { PaymentConfirmationSidebar } from "../components/payment-confirmation-s
 import { PaymentReceivedConfirmationSidebar } from "../components/payment-received-confirmation-sidebar"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import InfoCircleIcon from "@/public/icons/info-circle-bold.svg"
+import { useTrackers } from "@/analytics/useTrackers"
 
 export default function OrderDetailsPage() {
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const params = useParams()
   const orderId = params.id as string
   const isMobile = useIsMobile()
@@ -97,6 +99,7 @@ export default function OrderDetailsPage() {
   }, [orderId, subscribe])
 
   const showOrderDetails = () => {
+    track("ek_view_order_info_order_details")
     if (isMobile) {
       setShowDetailsSidebar(true)
     } else {
@@ -284,22 +287,32 @@ export default function OrderDetailsPage() {
   }, [order])
 
   const handleShowPaymentConfirmation = () => {
+    track("ek_ive_paid_order_details")
     setShowPaymentConfirmation(true)
   }
 
   const handleCancelOrder = () => {
+    track("ek_cancel_order_order_details")
     showAlert({
       title: t("orderDetails.cancellingYourOrder"),
       description: t("orderDetails.dontCancelIfPaid"),
       confirmText: t("orderDetails.cancelOrder"),
       cancelText: t("orderDetails.keepOrder"),
+      onCancel: () => {
+        track("ek_keep_order_order_cancel_sheet")
+      },
       onConfirm: async () => {
+        track("ek_confirm_cancel_order_cancel_sheet")
         try {
           const result = await OrdersAPI.cancelOrder(orderId)
           if (result.success) {
+            track("ek_order_cancelled_order_cancel_sheet")
             fetchOrderDetails()
+          } else {
+            track("ek_order_cancellation_failed_order_cancel_sheet", { error_code: "cancellation_failed", error_message: "Order cancellation failed" })
           }
         } catch (error) {
+          track("ek_order_cancellation_failed_order_cancel_sheet", { error_code: "network_error", error_message: error instanceof Error ? error.message : "Cancellation failed" })
           console.error("Failed to cancel order:", error)
         }
       },
@@ -319,6 +332,7 @@ export default function OrderDetailsPage() {
   }
 
   const handlePaymentReceived = async () => {
+    track("ek_ive_received_payment_order_details")
     if (orderVerificationEnabled) {
       setShowPaymentReceivedConfirmation(true)
     } else {
@@ -539,6 +553,7 @@ export default function OrderDetailsPage() {
                         {isMobile && (
                           <Button
                             onClick={() => {
+                              track("ek_chat_order_details")
                               setShowChat(true)
                               setIsChatVisible(true)
                             }}
@@ -656,7 +671,10 @@ export default function OrderDetailsPage() {
                     <div className="pt-2 flex justify-end">
                       <Button
                         variant="outline"
-                        onClick={() => setShowRatingSidebar(true)}
+                        onClick={() => {
+                          track("ek_rate_transaction_order_details")
+                          setShowRatingSidebar(true)
+                        }}
                         className="flex-auto md:flex-none"
                       >
                         {t("orderDetails.rateTransaction")}
@@ -682,7 +700,10 @@ export default function OrderDetailsPage() {
                   <div className="py-4 flex justify-end flex-auto md:flex-none">
                     <Button
                       variant="outline"
-                      onClick={() => setShowComplaintForm(true)}
+                      onClick={() => {
+                        track("ek_make_complaint_order_details")
+                        setShowComplaintForm(true)
+                      }}
                       className="flex-auto md:flex-1"
                     >
                       {t("orderDetails.complain")}

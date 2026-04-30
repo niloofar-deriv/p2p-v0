@@ -14,6 +14,7 @@ import type { MarketFilterOptions } from "./types"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import { cn } from "@/lib/utils"
 import { useUserDataStore } from "@/stores/user-data-store"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface MarketFilterDropdownProps {
   activeTab?: string
@@ -40,12 +41,14 @@ export default function MarketFilterDropdown({
   const isMobile = useIsMobile()
   const { t } = useTranslations()
   const { userData } = useUserDataStore()
+  const { track } = useTrackers()
 
   useEffect(() => {
     setFilters(initialFilters)
   }, [initialFilters])
 
   const handleReset = () => {
+    track("ek_reset_filters_markets_filter")
     setSortBy("exchange_rate")
     onApply({ fromFollowing: false }, "exchange_rate")
     setIsOpen(false)
@@ -53,6 +56,7 @@ export default function MarketFilterDropdown({
   }
 
   const handleApply = () => {
+    track("ek_apply_filters_markets_filter")
     onApply(filters, sortBy)
     setIsOpen(false)
     onOpenChangeProp?.(false)
@@ -67,6 +71,7 @@ export default function MarketFilterDropdown({
   )
 
   const handleFilterChange = (key: keyof MarketFilterOptions, value: boolean) => {
+    if (key === "fromFollowing") track("ek_toggle_followed_users_markets_filter")
     const newFilters = {
       ...filters,
       [key]: value,
@@ -79,6 +84,8 @@ export default function MarketFilterDropdown({
   }
 
   const handleSortByChange = (value: "exchange_rate" | "user_rating_average_lifetime") => {
+    if (value === "exchange_rate") track("ek_sort_by_exchange_rate_markets_filter")
+    else if (value === "user_rating_average_lifetime") track("ek_sort_by_user_rating_markets_filter")
     setSortBy(value)
 
     if (!isMobile) {

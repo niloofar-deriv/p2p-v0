@@ -1,0 +1,28 @@
+{
+  "version": "0.0.1",
+  "event_metadata": {
+    "page_name": {
+      "description": "The name of the current page. Agent can get this from pages.page_name in the flow JSON."
+    },
+    "account_type": {
+      "value": "{{real | demo}}",
+      "description": "Real account or Demo account. This can be set after user logged in to the app. Need to read the value from the app during running the project."
+    },
+    "user_language": {
+      "value": "{{language_code}}",
+      "description": "Need to read this from the selected language in the app in the runtime."
+    },
+    "country_of_residence": {
+      "value": "{{country_code}}",
+      "description": "User's selected country of residence. Need to read it from app."
+    },
+    "is_profile_completed": {
+      "value": "{{true || false}}",
+      "description": "Is the state of real account creation. If user completed the account creation it is true else false. Need to read it from app."
+    },
+    "project_name": {
+      "value": "p2p_web_app",
+      "description": "Hardcoded value for the app. Defined when setting up event_metadata."
+    }
+  }
+}

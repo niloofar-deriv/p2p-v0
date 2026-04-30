@@ -8,6 +8,7 @@ import { useIsMobile } from "@/hooks/use-mobile"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface VisibilityStatusDialogProps {
   id: string
@@ -77,8 +78,10 @@ export function VisibilityStatusDialog({
   const isMobile = useIsMobile()
   const { t } = useTranslations()
   const router = useRouter()
+  const { track } = useTrackers()
 
   const handleAction = (actionType: string) => {
+    track("ek_visibility_primary_action_ad_visibility_sheet", { visibility_primary_action: actionType })
     switch (actionType) {
       case "edit":
       case "edit_schedule":
@@ -126,7 +129,14 @@ export function VisibilityStatusDialog({
             })}
           </ol>
           {reasons.length > 1 && (
-            <Button onClick={() => onOpenChange(false)} className="w-full mt-8" variant="default">
+            <Button
+              onClick={() => {
+                track("ek_visibility_secondary_action_ad_visibility_sheet", { visibility_secondary_action: "got_it" })
+                onOpenChange(false)
+              }}
+              className="w-full mt-8"
+              variant="default"
+            >
               {t("common.gotIt")}
             </Button>
           )}

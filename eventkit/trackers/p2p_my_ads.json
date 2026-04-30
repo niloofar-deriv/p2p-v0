@@ -1,0 +1,483 @@
+{
+  "version": "0.0.1",
+  "flow": "p2p_my_ads",
+  "last_updated": "2026-04-30",
+  "pages": [
+    {
+      "page_name": "my_ads",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "open",
+          "eventkit_id": "ek_open_my_ads",
+          "description": "User opens the My Ads page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_profile",
+          "eventkit_id": "ek_profile_my_ads",
+          "cta_name": "profile",
+          "description": "User taps the profile icon to navigate to their profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_notifications",
+          "eventkit_id": "ek_notifications_my_ads",
+          "cta_name": "notifications",
+          "description": "User taps the notifications bell icon"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ask_amy",
+          "eventkit_id": "ek_ask_amy_my_ads",
+          "cta_name": "ask_amy",
+          "description": "User taps the Ask Amy button to open Intercom messenger"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_toggle_hide_my_ads",
+          "eventkit_id": "ek_toggle_hide_my_ads_my_ads",
+          "cta_name": "toggle_hide_my_ads",
+          "description": "User toggles the Hide My Ads switch to globally show or hide all their ads"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_create_ad",
+          "eventkit_id": "ek_create_ad_my_ads",
+          "cta_name": "create_ad",
+          "description": "User taps the Create Ad button (FAB or empty state) to start the ad creation wizard"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_manage_ad",
+          "eventkit_id": "ek_manage_ad_my_ads",
+          "cta_name": "manage_ad",
+          "section_name": "ad_card",
+          "description": "User taps the menu icon on an ad card to open the manage ad sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ad_visibility_warning",
+          "eventkit_id": "ek_ad_visibility_warning_my_ads",
+          "cta_name": "ad_visibility_warning",
+          "section_name": "ad_card",
+          "description": "User taps the visibility warning icon on an ad card to see why the ad is hidden"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry",
+          "eventkit_id": "ek_retry_my_ads",
+          "cta_name": "retry",
+          "section_name": "error_state",
+          "description": "User taps Retry after the ads list fails to load"
+        }
+      ]
+    },
+    {
+      "page_name": "manage_ad_sheet",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_edit_ad",
+          "eventkit_id": "ek_edit_ad_manage_ad_sheet",
+          "cta_name": "edit_ad",
+          "section_name": "manage_ad_sheet",
+          "description": "User taps Edit to navigate to the ad editing wizard"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_share_ad",
+          "eventkit_id": "ek_share_ad_manage_ad_sheet",
+          "cta_name": "share_ad",
+          "section_name": "manage_ad_sheet",
+          "description": "User taps Share to navigate to the share ad page with QR code"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_toggle_ad_status",
+          "eventkit_id": "ek_toggle_ad_status_manage_ad_sheet",
+          "cta_name": "{{ad_status_action}}",
+          "section_name": "manage_ad_sheet",
+          "description": "User taps Activate or Deactivate to change the ad's active status"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_delete_ad",
+          "eventkit_id": "ek_delete_ad_manage_ad_sheet",
+          "cta_name": "delete_ad",
+          "section_name": "manage_ad_sheet",
+          "description": "User taps Delete to open the delete ad confirmation sheet"
+        }
+      ]
+    },
+    {
+      "page_name": "delete_ad_sheet",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_delete",
+          "eventkit_id": "ek_confirm_delete_delete_ad_sheet",
+          "cta_name": "confirm_delete",
+          "section_name": "delete_ad_sheet",
+          "description": "User taps Confirm to permanently delete the ad"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_delete",
+          "eventkit_id": "ek_cancel_delete_delete_ad_sheet",
+          "cta_name": "cancel_delete",
+          "section_name": "delete_ad_sheet",
+          "description": "User taps Cancel to dismiss the delete confirmation sheet"
+        }
+      ]
+    },
+    {
+      "page_name": "ad_visibility_sheet",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_visibility_primary_action",
+          "eventkit_id": "ek_visibility_primary_action_ad_visibility_sheet",
+          "cta_name": "{{visibility_primary_action}}",
+          "section_name": "ad_visibility_sheet",
+          "description": "User taps the primary action button (e.g. activate_ad, update_ad, open_live_chat, view_profile)"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_visibility_secondary_action",
+          "eventkit_id": "ek_visibility_secondary_action_ad_visibility_sheet",
+          "cta_name": "{{visibility_secondary_action}}",
+          "section_name": "ad_visibility_sheet",
+          "description": "User taps the secondary action button when multiple visibility reasons are present"
+        }
+      ]
+    },
+    {
+      "page_name": "cancel_ad_sheet",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_continue_editing",
+          "eventkit_id": "ek_continue_editing_cancel_ad_sheet",
+          "cta_name": "continue_editing",
+          "section_name": "cancel_ad_sheet",
+          "description": "User taps Continue to dismiss the cancel sheet and resume editing or creating the ad"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_cancel_ad",
+          "eventkit_id": "ek_confirm_cancel_ad_cancel_ad_sheet",
+          "cta_name": "confirm_cancel_ad",
+          "section_name": "cancel_ad_sheet",
+          "description": "User confirms cancelling the ad wizard and discards unsaved changes"
+        }
+      ]
+    },
+    {
+      "page_name": "create_ad_step_1",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_create_ad_step_1",
+          "cta_name": "close",
+          "description": "User taps the X button to open the cancel ad wizard confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_buy_type",
+          "eventkit_id": "ek_select_buy_type_create_ad_step_1",
+          "cta_name": "select_buy_type",
+          "description": "User selects Buy as the ad type in the segmented control (create mode only)"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_sell_type",
+          "eventkit_id": "ek_select_sell_type_create_ad_step_1",
+          "cta_name": "select_sell_type",
+          "description": "User selects Sell as the ad type in the segmented control (create mode only)"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_account_currency",
+          "eventkit_id": "ek_account_currency_create_ad_step_1",
+          "cta_name": "account_currency",
+          "description": "User taps the account currency row to open the currency selector sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_account_currency",
+          "eventkit_id": "ek_select_account_currency_create_ad_step_1",
+          "cta_name": "{{currency_code}}",
+          "section_name": "account_currency_sheet",
+          "description": "User selects an account currency for the ad"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_payment_currency",
+          "eventkit_id": "ek_payment_currency_create_ad_step_1",
+          "cta_name": "payment_currency",
+          "description": "User taps the payment currency row to open the currency selector sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_payment_currency",
+          "eventkit_id": "ek_select_payment_currency_create_ad_step_1",
+          "cta_name": "{{currency_code}}",
+          "section_name": "payment_currency_sheet",
+          "description": "User selects a local payment currency for the ad"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_rate_type",
+          "eventkit_id": "ek_rate_type_create_ad_step_1",
+          "cta_name": "rate_type",
+          "description": "User taps the rate type selector to open the rate type selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_fixed_rate",
+          "eventkit_id": "ek_select_fixed_rate_create_ad_step_1",
+          "cta_name": "select_fixed_rate",
+          "section_name": "rate_type_sheet",
+          "description": "User selects Fixed as the rate type for the ad"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_floating_rate",
+          "eventkit_id": "ek_select_floating_rate_create_ad_step_1",
+          "cta_name": "select_floating_rate",
+          "section_name": "rate_type_sheet",
+          "description": "User selects Floating as the rate type for the ad"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_next",
+          "eventkit_id": "ek_next_create_ad_step_1",
+          "cta_name": "next",
+          "description": "User taps Next to validate step 1 fields and proceed to step 2"
+        }
+      ]
+    },
+    {
+      "page_name": "create_ad_step_2",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_create_ad_step_2",
+          "cta_name": "back",
+          "description": "User taps the back button to return to step 1"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_create_ad_step_2",
+          "cta_name": "close",
+          "description": "User taps the X button to open the cancel ad wizard confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_payment_methods",
+          "eventkit_id": "ek_select_payment_methods_create_ad_step_2",
+          "cta_name": "select_payment_methods",
+          "description": "User taps the payment method selector to open the payment methods selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_toggle_payment_method",
+          "eventkit_id": "ek_toggle_payment_method_create_ad_step_2",
+          "cta_name": "{{payment_method_name}}",
+          "section_name": "payment_methods_sheet",
+          "description": "User toggles a payment method in the selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_payment_methods",
+          "eventkit_id": "ek_confirm_payment_methods_create_ad_step_2",
+          "cta_name": "confirm_payment_methods",
+          "section_name": "payment_methods_sheet",
+          "description": "User taps Confirm to save the selected payment methods and close the sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_next",
+          "eventkit_id": "ek_next_create_ad_step_2",
+          "cta_name": "next",
+          "description": "User taps Next to save step 2 data and proceed to step 3"
+        }
+      ]
+    },
+    {
+      "page_name": "create_ad_step_3",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_apply_countries",
+          "eventkit_id": "ek_apply_countries_create_ad_step_3",
+          "cta_name": "apply_countries",
+          "section_name": "countries_selection_sheet",
+          "description": "User taps Apply to confirm the country selection and close the sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_reset_countries",
+          "eventkit_id": "ek_reset_countries_create_ad_step_3",
+          "cta_name": "reset_countries",
+          "section_name": "countries_selection_sheet",
+          "description": "User taps Reset to revert country selection to all countries"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_submit_ad",
+          "eventkit_id": "ek_submit_ad_create_ad_step_3",
+          "cta_name": "{{submit_ad_action}}",
+          "description": "User taps Post Ad (create) or Save (edit) to submit the ad"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_ad_created",
+          "eventkit_id": "ek_ad_created_create_ad_step_3",
+          "description": "Fires when a new ad is successfully created via the API"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_ad_updated",
+          "eventkit_id": "ek_ad_updated_create_ad_step_3",
+          "description": "Fires when an existing ad is successfully updated via the API"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_ad_submission_failed",
+          "eventkit_id": "ek_ad_submission_failed_create_ad_step_3",
+          "description": "Fires when ad creation or update fails with an API error"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_create_ad_step_3",
+          "cta_name": "back",
+          "description": "User taps the back button to return to step 2"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_create_ad_step_3",
+          "cta_name": "close",
+          "description": "User taps the X button to open the cancel ad wizard confirmation sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_order_time_limit",
+          "eventkit_id": "ek_order_time_limit_create_ad_step_3",
+          "cta_name": "order_time_limit",
+          "description": "User taps the order time limit selector to open the time limit selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_time_limit",
+          "eventkit_id": "ek_select_time_limit_create_ad_step_3",
+          "cta_name": "{{time_limit_minutes}}",
+          "section_name": "order_time_limit_sheet",
+          "description": "User selects an order expiry time limit (15, 30, 45, or 60 minutes)"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_country_selection",
+          "eventkit_id": "ek_country_selection_create_ad_step_3",
+          "cta_name": "country_selection",
+          "description": "User taps the country selection row to open the countries selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_all_countries",
+          "eventkit_id": "ek_select_all_countries_create_ad_step_3",
+          "cta_name": "select_all_countries",
+          "section_name": "countries_selection_sheet",
+          "description": "User selects All Countries in the countries selection sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_toggle_country",
+          "eventkit_id": "ek_toggle_country_create_ad_step_3",
+          "cta_name": "{{country_code}}",
+          "section_name": "countries_selection_sheet",
+          "description": "User toggles a specific country in the countries selection sheet"
+        }
+      ]
+    },
+    {
+      "page_name": "ad_created_sucess",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_share_ad",
+          "eventkit_id": "ek_share_ad_ad_created_sucess",
+          "cta_name": "share_ad",
+          "description": "User taps Share Ad to navigate to the share ad page with a QR code"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_go_to_my_ads",
+          "eventkit_id": "ek_go_to_my_ads_ad_created_sucess",
+          "cta_name": "go_to_my_ads",
+          "description": "User taps Go to My Ads to navigate back to the My Ads list"
+        }
+      ]
+    },
+    {
+      "page_name": "share_ad",
+      "event_name": "ce_p2p_my_ads_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_share_ad",
+          "cta_name": "close",
+          "description": "User taps the close button to return to My Ads"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_share_image",
+          "eventkit_id": "ek_share_image_share_ad",
+          "cta_name": "share_image",
+          "description": "User taps Share Image to capture the QR card and open the native share sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_save_image",
+          "eventkit_id": "ek_save_image_share_ad",
+          "cta_name": "save_image",
+          "description": "User taps Save Image to capture the QR card and save it to the device gallery"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_image_shared",
+          "eventkit_id": "ek_image_shared_share_ad",
+          "description": "Fires when the ad QR card image is successfully shared via the native share sheet"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_image_saved",
+          "eventkit_id": "ek_image_saved_share_ad",
+          "description": "Fires when the ad QR card image is successfully saved to the device gallery"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_share_methods",
+          "eventkit_id": "ek_share_methods_share_ad",
+          "cta_name": "{{method_name}}",
+          "description": "The options for share ads, can be Whatsapp, Facebook, Telegram, Gmail, Copy Link and save image."
+        }
+      ]
+    }
+  ]
+}

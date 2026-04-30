@@ -1,0 +1,284 @@
+{
+  "version": "0.0.1",
+  "flow": "p2p_wallets",
+  "last_updated": "2026-04-30",
+  "pages": [
+    {
+      "page_name": "wallets",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "open",
+          "eventkit_id": "ek_open_wallets",
+          "description": "User opens the Wallets page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_profile",
+          "eventkit_id": "ek_profile_wallets",
+          "cta_name": "profile",
+          "description": "User taps the profile icon to navigate to their profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_notifications",
+          "eventkit_id": "ek_notifications_wallets",
+          "cta_name": "notifications",
+          "description": "User taps the notifications bell icon"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ask_amy",
+          "eventkit_id": "ek_ask_amy_wallets",
+          "cta_name": "ask_amy",
+          "description": "User taps the Ask Amy button to open Intercom messenger"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_transfer",
+          "eventkit_id": "ek_transfer_wallets",
+          "cta_name": "transfer",
+          "description": "User taps the Transfer button in the header to navigate to the transfer page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_wallet_item",
+          "eventkit_id": "ek_wallet_item_wallets",
+          "cta_name": "{{currency_code}}",
+          "section_name": "wallet_list",
+          "description": "User taps a wallet card to view its transaction history"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_buy_currency",
+          "eventkit_id": "ek_buy_currency_wallets",
+          "cta_name": "buy_currency",
+          "section_name": "empty_state",
+          "description": "User taps the currency card on the empty state to navigate to the Markets page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry",
+          "eventkit_id": "ek_retry_wallets",
+          "cta_name": "retry",
+          "section_name": "error_state",
+          "description": "User taps Retry after the wallets list fails to load"
+        }
+      ]
+    },
+    {
+      "page_name": "wallet_transactions",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_wallet_transactions",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Wallets page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_buy",
+          "eventkit_id": "ek_buy_wallet_transactions",
+          "cta_name": "buy",
+          "section_name": "wallet_actions",
+          "description": "User taps the Buy action button to navigate to Markets with buy tab selected"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_transfer",
+          "eventkit_id": "ek_transfer_wallet_transactions",
+          "cta_name": "transfer",
+          "section_name": "wallet_actions",
+          "description": "User taps the Transfer action button to navigate to the transfer page with this wallet pre-selected"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_sell",
+          "eventkit_id": "ek_sell_wallet_transactions",
+          "cta_name": "sell",
+          "section_name": "wallet_actions",
+          "description": "User taps the Sell action button to navigate to Markets with sell tab selected"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_transaction_item",
+          "eventkit_id": "ek_transaction_item_wallet_transactions",
+          "cta_name": "transaction_item",
+          "section_name": "transaction_list",
+          "description": "User taps a transaction tile to navigate to the transaction details page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_load_more",
+          "eventkit_id": "ek_load_more_wallet_transactions",
+          "cta_name": "load_more",
+          "section_name": "transaction_list",
+          "description": "User taps the Load More button to fetch the next page of transactions"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry",
+          "eventkit_id": "ek_retry_wallet_transactions",
+          "cta_name": "retry",
+          "section_name": "error_state",
+          "description": "User taps Retry after the transaction list fails to load"
+        }
+      ]
+    },
+    {
+      "page_name": "transfer",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_transfer",
+          "cta_name": "close",
+          "description": "User taps the X button to dismiss the Transfer page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_from_wallet",
+          "eventkit_id": "ek_from_wallet_transfer",
+          "cta_name": "from_wallet",
+          "description": "User taps the From wallet card to open the wallet selector sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_to_wallet",
+          "eventkit_id": "ek_to_wallet_transfer",
+          "cta_name": "to_wallet",
+          "description": "User taps the To wallet card to open the wallet selector sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_swap_wallets",
+          "eventkit_id": "ek_swap_wallets_transfer",
+          "cta_name": "swap_wallets",
+          "description": "User taps the swap button to swap the From and To wallets"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_percentage_fill",
+          "eventkit_id": "ek_percentage_fill_transfer",
+          "cta_name": "{{percentage_value}}",
+          "section_name": "quick_fill_chips",
+          "description": "User taps a percentage quick-fill chip (25, 50, 75, or 100) to auto-fill the amount"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_source_currency_segment",
+          "eventkit_id": "ek_source_currency_segment_transfer",
+          "cta_name": "{{currency_name}}",
+          "section_name": "from_currency_selector",
+          "description": "User selects the Source Currency segment for cross-currency transfers"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_destination_currency_segment",
+          "eventkit_id": "ek_destination_currency_segment_transfer",
+          "cta_name": "{{currency_name}}",
+          "section_name": "to_currency_selector",
+          "description": "User selects the Destination Currency segment for cross-currency transfers"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry_exchange_rate",
+          "eventkit_id": "ek_retry_exchange_rate_transfer",
+          "cta_name": "retry_exchange_rate",
+          "section_name": "exchange_rate",
+          "description": "User taps Retry after the exchange rate fails to load"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_transfer",
+          "eventkit_id": "ek_transfer_transfer",
+          "cta_name": "transfer",
+          "description": "User taps the Transfer button to open the confirm transfer sheet"
+        }
+      ]
+    },
+    {
+      "page_name": "wallet_selector_sheet",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_wallet",
+          "eventkit_id": "ek_select_wallet_wallet_selector_sheet",
+          "cta_name": "{{wallet_currency}}",
+          "section_name": "wallet_selector_sheet",
+          "description": "User selects a wallet from the list"
+        }
+      ]
+    },
+    {
+      "page_name": "confirm_transfer_sheet",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_transfer",
+          "eventkit_id": "ek_confirm_transfer_confirm_transfer_sheet",
+          "cta_name": "confirm_transfer",
+          "section_name": "confirm_transfer_sheet",
+          "description": "User taps Confirm to execute the transfer"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_transfer_successful",
+          "eventkit_id": "ek_transfer_successful_confirm_transfer_sheet",
+          "description": "Fires when the transfer is successfully executed"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_transfer_failed",
+          "eventkit_id": "ek_transfer_failed_confirm_transfer_sheet",
+          "description": "Fires when the transfer API call fails"
+        }
+      ]
+    },
+    {
+      "page_name": "transfer_successful",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_got_it",
+          "eventkit_id": "ek_got_it_transfer_successful",
+          "cta_name": "got_it",
+          "description": "User taps Got it to navigate to the Wallets page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_view_details",
+          "eventkit_id": "ek_view_details_transfer_successful",
+          "cta_name": "view_details",
+          "description": "User taps View details to navigate to the transaction details for this transfer"
+        }
+      ]
+    },
+    {
+      "page_name": "transfer_unsuccessful",
+      "event_name": "ce_p2p_wallets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_try_again",
+          "eventkit_id": "ek_try_again_transfer_unsuccessful",
+          "cta_name": "try_again",
+          "description": "User taps Try again to return to the Transfer page and retry"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_not_now",
+          "eventkit_id": "ek_not_now_transfer_unsuccessful",
+          "cta_name": "not_now",
+          "description": "User taps Not now to navigate to the Wallets page without retrying"
+        }
+      ]
+    }
+  ]
+}

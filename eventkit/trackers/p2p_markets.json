@@ -1,0 +1,375 @@
+{
+  "version": "0.0.1",
+  "flow": "p2p_markets",
+  "last_updated": "2026-04-30",
+  "pages": [
+    {
+      "page_name": "markets",
+      "event_name": "ce_p2p_markets_page",
+      "trackers": [
+        {
+          "action": "open",
+          "eventkit_id": "ek_open_markets",
+          "description": "User opens the Markets page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_profile",
+          "eventkit_id": "ek_profile_markets",
+          "cta_name": "profile",
+          "description": "User taps the profile icon to navigate to their profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_notifications",
+          "eventkit_id": "ek_notifications_markets",
+          "cta_name": "notifications",
+          "description": "User taps the notifications bell icon"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_ask_amy",
+          "eventkit_id": "ek_ask_amy_markets",
+          "cta_name": "ask_amy",
+          "description": "User taps the Ask Amy button to open Intercom messenger"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_search",
+          "eventkit_id": "ek_search_markets",
+          "cta_name": "search",
+          "description": "User taps the search icon to navigate to the Markets search page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_payment_currency",
+          "eventkit_id": "ek_payment_currency_markets",
+          "cta_name": "payment_currency",
+          "description": "User taps the payment currency selector to change their local currency"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_buy",
+          "eventkit_id": "ek_buy_markets",
+          "cta_name": "buy",
+          "section_name": "hero",
+          "description": "User switches to the Buy tab to see sell adverts"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_sell",
+          "eventkit_id": "ek_sell_markets",
+          "cta_name": "sell",
+          "section_name": "hero",
+          "description": "User switches to the Sell tab to see buy adverts"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_payment_method_filter",
+          "eventkit_id": "ek_payment_method_filter_markets",
+          "cta_name": "payment_method_filter",
+          "description": "User taps the payment method filter button to open the payment method filter sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_filter",
+          "eventkit_id": "ek_filter_markets",
+          "cta_name": "filter",
+          "description": "User taps the filter button to open the markets filters sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advert_action",
+          "eventkit_id": "ek_advert_action_markets",
+          "cta_name": "{{advert_type}}",
+          "section_name": "advert_list",
+          "description": "User taps the buy or sell button on an advert card to open the advert detail sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advertiser_profile",
+          "eventkit_id": "ek_advertiser_profile_markets",
+          "cta_name": "advertiser_profile",
+          "section_name": "advert_list",
+          "description": "User taps an advertiser's name or avatar to view their public profile"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_create_ad",
+          "eventkit_id": "ek_create_ad_markets",
+          "cta_name": "create_ad",
+          "section_name": "empty_state",
+          "description": "User taps the Create Ad button on the empty state when no adverts are available"
+        }
+      ]
+    },
+    {
+      "page_name": "markets_search",
+      "event_name": "ce_p2p_markets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_back",
+          "eventkit_id": "ek_back_markets_search",
+          "cta_name": "back",
+          "description": "User taps the back button to return to the Markets page"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_clear_search",
+          "eventkit_id": "ek_clear_search_markets_search",
+          "cta_name": "clear_search",
+          "description": "User taps the clear button to reset the search query"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_buy_tab",
+          "eventkit_id": "ek_buy_tab_markets_search",
+          "cta_name": "buy_tab",
+          "description": "User switches to the Buy tab in search results"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_sell_tab",
+          "eventkit_id": "ek_sell_tab_markets_search",
+          "cta_name": "sell_tab",
+          "description": "User switches to the Sell tab in search results"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advert_action",
+          "eventkit_id": "ek_advert_action_markets_search",
+          "cta_name": "{{advert_type}}",
+          "section_name": "search_results",
+          "description": "User taps the buy or sell button on an advert card in search results"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_advertiser_profile",
+          "eventkit_id": "ek_advertiser_profile_markets_search",
+          "cta_name": "advertiser_profile",
+          "section_name": "search_results",
+          "description": "User taps an advertiser's name or avatar in search results to view their profile"
+        }
+      ]
+    },
+    {
+      "page_name": "markets_advert_sheet",
+      "event_name": "ce_p2p_markets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_close",
+          "eventkit_id": "ek_close_markets_advert_sheet",
+          "cta_name": "close",
+          "section_name": "markets_advert_sheet",
+          "description": "User taps the close button to dismiss the advert sheet without placing an order"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_payment_method",
+          "eventkit_id": "ek_select_payment_method_markets_advert_sheet",
+          "cta_name": "select_payment_method",
+          "section_name": "markets_advert_sheet",
+          "description": "User taps the payment method selector field (sell adverts only) to choose a payment method"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_place_order",
+          "eventkit_id": "ek_place_order_markets_advert_sheet",
+          "cta_name": "place_order",
+          "section_name": "markets_advert_sheet",
+          "description": "User taps the Place Order button to submit the order"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_order_created",
+          "eventkit_id": "ek_order_created_markets_advert_sheet",
+          "description": "Fires when the order is successfully created and the user is navigated to the order detail page"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_order_creation_failed",
+          "eventkit_id": "ek_order_creation_failed_markets_advert_sheet",
+          "description": "Fires when order creation fails due to a non-rate-slippage error"
+        },
+        {
+          "action": "trigger",
+          "trigger_id": "ek_order_rate_slippage_detected",
+          "eventkit_id": "ek_order_rate_slippage_detected_markets_advert_sheet",
+          "description": "Fires when a rate change is detected during pre-flight check before order creation"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_confirm_rate_change",
+          "eventkit_id": "ek_confirm_rate_change_markets_advert_sheet",
+          "cta_name": "confirm_rate_change",
+          "section_name": "rate_slippage_sheet",
+          "description": "User confirms placing the order at the updated exchange rate"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_cancel_rate_change",
+          "eventkit_id": "ek_cancel_rate_change_markets_advert_sheet",
+          "cta_name": "cancel_rate_change",
+          "section_name": "rate_slippage_sheet",
+          "description": "User declines the updated rate and goes back to the advert sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_retry_order",
+          "eventkit_id": "ek_retry_order_markets_advert_sheet",
+          "cta_name": "retry_order",
+          "section_name": "order_error_sheet",
+          "description": "User retries order creation after a failure"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_view_other_ads",
+          "eventkit_id": "ek_view_other_ads_markets_advert_sheet",
+          "cta_name": "view_other_ads",
+          "section_name": "order_error_sheet",
+          "description": "User chooses to view other ads after an order creation error"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_manage_blocked",
+          "eventkit_id": "ek_manage_blocked_markets_advert_sheet",
+          "cta_name": "manage_blocked",
+          "section_name": "order_error_sheet",
+          "description": "User navigates to manage blocked users from the order error sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_view_active_order",
+          "eventkit_id": "ek_view_active_order_markets_advert_sheet",
+          "cta_name": "view_active_order",
+          "section_name": "order_error_sheet",
+          "description": "User navigates to an existing active order from the order error sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_open_live_chat",
+          "eventkit_id": "ek_open_live_chat_markets_advert_sheet",
+          "cta_name": "open_live_chat",
+          "section_name": "order_error_sheet",
+          "description": "User opens live chat support from the order error sheet"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_view_profile",
+          "eventkit_id": "ek_view_profile_markets_advert_sheet",
+          "cta_name": "view_profile",
+          "section_name": "order_error_sheet",
+          "description": "User navigates to their profile from the order error sheet"
+        }
+      ]
+    },
+    {
+      "page_name": "markets_filter",
+      "event_name": "ce_p2p_markets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_toggle_followed_users",
+          "eventkit_id": "ek_toggle_followed_users_markets_filter",
+          "cta_name": "toggle_followed_users",
+          "section_name": "markets_filter_sheet",
+          "description": "User toggles the Show ads from followed users filter checkbox"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_sort_by_tier_level",
+          "eventkit_id": "ek_sort_by_tier_level_markets_filter",
+          "cta_name": "sort_by_tier_level",
+          "section_name": "markets_filter_sheet",
+          "description": "User selects tier level as the sort order"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_sort_by_exchange_rate",
+          "eventkit_id": "ek_sort_by_exchange_rate_markets_filter",
+          "cta_name": "sort_by_exchange_rate",
+          "section_name": "markets_filter_sheet",
+          "description": "User selects exchange rate as the sort order"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_sort_by_user_rating",
+          "eventkit_id": "ek_sort_by_user_rating_markets_filter",
+          "cta_name": "sort_by_user_rating",
+          "section_name": "markets_filter_sheet",
+          "description": "User selects user rating as the sort order"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_apply_filters",
+          "eventkit_id": "ek_apply_filters_markets_filter",
+          "cta_name": "apply_filters",
+          "section_name": "markets_filter_sheet",
+          "description": "User taps Apply to save and apply the selected filter and sort settings"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_reset_filters",
+          "eventkit_id": "ek_reset_filters_markets_filter",
+          "cta_name": "reset_filters",
+          "section_name": "markets_filter_sheet",
+          "description": "User taps Reset to clear all filters back to default values"
+        }
+      ]
+    },
+    {
+      "page_name": "markets_payment_method_filter",
+      "event_name": "ce_p2p_markets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_all_payment_methods",
+          "eventkit_id": "ek_select_all_payment_methods_markets_payment_method_filter",
+          "cta_name": "select_all_payment_methods",
+          "section_name": "payment_method_filter_sheet",
+          "description": "User selects All Payment Methods to show ads from every payment method"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_payment_method",
+          "eventkit_id": "ek_select_payment_method_markets_payment_method_filter",
+          "cta_name": "{{payment_method_name}}",
+          "section_name": "payment_method_filter_sheet",
+          "description": "User toggles a specific payment method filter"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_apply_filter",
+          "eventkit_id": "ek_apply_filter_markets_payment_method_filter",
+          "cta_name": "apply_filter",
+          "section_name": "payment_method_filter_sheet",
+          "description": "User taps Apply to save the payment method filter selection"
+        },
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_reset_filter",
+          "eventkit_id": "ek_reset_filter_markets_payment_method_filter",
+          "cta_name": "reset_filter",
+          "section_name": "payment_method_filter_sheet",
+          "description": "User taps Reset to clear all payment method filter selections"
+        }
+      ]
+    },
+    {
+      "page_name": "markets_payment_currency",
+      "event_name": "ce_p2p_markets_page",
+      "trackers": [
+        {
+          "action": "click",
+          "data_eventkit_id": "ek_select_payment_currency",
+          "eventkit_id": "ek_select_payment_currency_markets_payment_currency",
+          "cta_name": "{{currency_code}}",
+          "section_name": "payment_currency_selector",
+          "description": "User selects a local payment currency"
+        }
+      ]
+    }
+  ]
+}

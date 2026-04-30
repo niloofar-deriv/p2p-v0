@@ -24,6 +24,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import { useUserDataStore } from "@/stores/user-data-store"
 import { KycOnboardingSheet } from "@/components/kyc-onboarding-sheet"
 import { useDeleteAd, useToggleAdActiveStatus } from "@/hooks/use-api-queries"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface MyAdsTableProps {
   ads: Ad[]
@@ -35,6 +36,7 @@ interface MyAdsTableProps {
 
 export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching = false, onAdDeleted }: MyAdsTableProps) {
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const router = useRouter()
   const { toast } = useToast()
   const { showDeleteDialog, showAlert, hideAlert } = useAlertDialog()
@@ -121,6 +123,7 @@ export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching =
   }
 
   const handleShare = (ad: Ad) => {
+    track("ek_share_ad_manage_ad_sheet")
     setDrawerOpen(false)
     setOpenDropdownId(null)
     setAdToShare(ad)
@@ -133,16 +136,18 @@ export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching =
   }
 
   const handleEdit = (ad: Ad) => {
+    track("ek_edit_ad_manage_ad_sheet")
     setDrawerOpen(false)
     setOpenDropdownId(null)
     router.push(`/ads/edit/${ad.id}`)
   }
 
   const handleToggleStatus = async (ad: Ad) => {
-    setDrawerOpen(false)
-    setOpenDropdownId(null)
     const isActive = ad.is_active !== undefined ? ad.is_active : ad.status === "Active"
     const isListed = !isActive
+    track("ek_toggle_ad_status_manage_ad_sheet", { ad_status_action: isListed ? "activate" : "deactivate" })
+    setDrawerOpen(false)
+    setOpenDropdownId(null)
 
     toggleStatusMutation.mutate(
       { id: ad.id, isActive: isListed },
@@ -191,6 +196,7 @@ export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching =
   }
 
   const handleDelete = (adId: string) => {
+    track("ek_delete_ad_manage_ad_sheet")
     setDrawerOpen(false)
     setOpenDropdownId(null)
     showDeleteDialog({
@@ -198,7 +204,11 @@ export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching =
       description: t("myAds.deleteAdDescription"),
       confirmText: t("common.delete"),
       cancelText: t("common.cancel"),
+      onCancel: () => {
+        track("ek_cancel_delete_delete_ad_sheet")
+      },
       onConfirm: () => {
+        track("ek_confirm_delete_delete_ad_sheet")
         deleteAdMutation.mutate(adId, {
           onSuccess: () => {
             toast({
@@ -239,6 +249,7 @@ export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching =
   }
 
   const handleOpenDrawer = (ad: Ad) => {
+    track("ek_manage_ad_my_ads")
     if (!userId || !verificationStatus?.phone_verified || isPoiExpired || isPoaExpired) {
       let title = t("profile.gettingStarted")
 
@@ -263,6 +274,7 @@ export default function MyAdsTable({ ads, hiddenAdverts, isLoading, isFetching =
   }
 
   const handleVisibilityStatusClick = (ad: Ad) => {
+    track("ek_ad_visibility_warning_my_ads")
     if (ad.visibility_status && ad.visibility_status.length > 0) {
       setSelectedVisibilityReasons(ad.visibility_status)
       setSelectedAd(ad)

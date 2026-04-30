@@ -9,10 +9,12 @@ import { MobileSidebarTrigger } from "./mobile-sidebar-wrapper"
 import { useTranslations } from "@/lib/i18n/use-translations"
 import { useChatVisibilityStore } from "@/stores/chat-visibility-store"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { useTrackers } from "@/analytics/useTrackers"
 
 export default function Header() {
   const userId = useUserDataStore((state) => state.userId)
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const isMobile = useIsMobile()
   const { isChatVisible } = useChatVisibilityStore()
 
@@ -63,7 +65,7 @@ export default function Header() {
       </div>
       <div className="h-12 flex items-center space-x-4">
         {userId && (
-          <div className="text-slate-600 hover:text-slate-700">
+          <div className="text-slate-600 hover:text-slate-700" onClick={() => track("ek_notifications_markets")}>
             <NovuNotifications />
           </div>
         )}

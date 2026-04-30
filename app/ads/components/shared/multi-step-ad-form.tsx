@@ -22,6 +22,7 @@ import { useTranslations } from "@/lib/i18n/use-translations"
 import { useWebSocketContext } from "@/contexts/websocket-context"
 import { useUserDataStore } from "@/stores/user-data-store"
 import { useCreateAd, useUpdateAd, useSettings, useUserPaymentMethods, usePaymentMethods } from "@/hooks/use-api-queries"
+import { useTrackers } from "@/analytics/useTrackers"
 
 interface MultiStepAdFormProps {
   mode: "create" | "edit"
@@ -46,6 +47,7 @@ interface AvailablePaymentMethod {
 
 function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps) {
   const { t } = useTranslations()
+  const { track } = useTrackers()
   const router = useRouter()
   const isMobile = useIsMobile()
   const localCurrency = useUserDataStore((state) => state.localCurrency)
@@ -350,6 +352,7 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
 
       createAdMutation.mutate(payload, {
         onSuccess: (result) => {
+          track("ek_ad_created_create_ad_step_3")
           setIsSubmitting(false)
           router.push("/ads")
           showAlert({
@@ -387,6 +390,7 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
         { id: finalData.id, adData: payload },
         {
           onSuccess: () => {
+            track("ek_ad_updated_create_ad_step_3")
             setIsSubmitting(false)
             toast({
               description: (
@@ -472,6 +476,7 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
       type: "error" as "error" | "warning",
     }
 
+    track("ek_ad_submission_failed_create_ad_step_3", { error_code: errorName, error_message: errorMessage })
     showAlert({
       title: errorInfo.title,
       description: errorMessage,
@@ -501,6 +506,7 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
         return
       }
 
+      track("ek_next_create_ad_step_1")
       setCurrentStep(1)
       return
     }
@@ -514,6 +520,7 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
         return
       }
 
+      track("ek_next_create_ad_step_2")
       setCurrentStep(2)
       return
     }
@@ -527,12 +534,16 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
         return
       }
 
+      track("ek_submit_ad_create_ad_step_3", {
+        submit_ad_action: mode === "create" ? "create_ad" : "save_changes",
+      })
       handleFinalSubmit()
       return
     }
   }
 
   const handleClose = () => {
+    track(`ek_close_create_ad_step_${currentStep + 1}`)
     if (mode === "create") {
       showAlert({
         title: t("adForm.cancelAdCreation"),
@@ -540,8 +551,12 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
         cancelText: t("adForm.continueAdCreation"),
         confirmText: t("common.cancel"),
         type: "warning",
-        onCancel: hideAlert,
+        onCancel: () => {
+          track("ek_continue_editing_cancel_ad_sheet")
+          hideAlert()
+        },
         onConfirm: () => {
+          track("ek_confirm_cancel_ad_cancel_ad_sheet")
           const finalData = { ...formDataRef.current }
           const currency = finalData?.buyCurrency || "USD"
           leaveExchangeRatesChannel(currency)
@@ -583,6 +598,7 @@ function MultiStepAdFormInner({ mode, adId, initialType }: MultiStepAdFormProps)
               isBackBtnVisible={currentStep != 0}
               isVisible={false}
               onBack={() => {
+                track(`ek_back_create_ad_step_${currentStep + 1}`)
                 const updatedStep = currentStep - 1
                 setCurrentStep(updatedStep)
               }}
